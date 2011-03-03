@@ -1,4 +1,4 @@
-# simpledb
+# gex
 
 If you're using this library, feel free to contact me on twitter if you have any questions! :) [@rjrodger](http://twitter.com/rjrodger)
 
