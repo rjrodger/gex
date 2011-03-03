@@ -8,7 +8,7 @@ Tested on: node 0.4.1
 
 Glob expressions for JavaScript
 
-"When regular expressions are just too hard!"
+*"When regular expressions are just too hard!"*
 
 Match glob expressions using * and ? against any JavaScript data type. 
 The character * means match anything of any length, the character ? means match exactly one of any character, 
@@ -33,12 +33,12 @@ testing, `gex` can help you ignore them when you use `JSON.stringify`:
     var entity = {created: new Date().getTime(), name:'foo' }
     assert.ok( gex('{"created":*,"name":"foo"}').on( JSON.stringify(entity) ) )
 
-If you need to use globbing files, here's how apply a glob to a list of files in a folder:
+If you need to use globbing on files, here's how apply a glob to a list of files in a folder:
 
-   var fs = require('fs')
-   fs.readdir('.',function(err,files){ 
-     var pngs = gex('*.png').on(files) 
-   })
+    var fs = require('fs')
+    fs.readdir('.',function(err,files){ 
+      var pngs = gex('*.png').on(files) 
+    })
 
 And that's it!
 
@@ -55,7 +55,7 @@ Or clone the git repository:
     git clone git://github.com/rjrodger/gex.git
 
 
-This library depends on the excellent underscore module: [aws-lib](https://github.com/documentcloud/underscore)
+This library depends on the excellent underscore module: [underscore](https://github.com/documentcloud/underscore)
 
 
 ## Usage
@@ -65,7 +65,7 @@ expression.  This returns a `Gex` object that has only one function
 itself: `on`. The `on` function accepts any JavaScript data type, and operates as follows:
 
    * strings, numbers, booleans, dates, regexes: converted to string form for matching, returned as themselves
-   * arrays: return a new array with all the elements that matched. Elements are not modified, but are convered to strings for matching. Does not recurse into elements.
+   * arrays: return a new array with all the elements that matched. Elements are not modified, but are converted to strings for matching. Does not recurse into elements.
    * objects: return a new object with with all the property *names* that matched. Values are copied by reference. 
    * null, NAN, undefined: never match anything
 
