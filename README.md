@@ -2,9 +2,9 @@
 
 If you're using this library, feel free to contact me on twitter if you have any questions! :) [@rjrodger](http://twitter.com/rjrodger)
 
-Current Version: 0.0.1
+Current Version: 0.0.3
 
-Tested on: node 0.4.1
+Tested on: node 0.4 and 0.6
 
 Glob expressions for JavaScript
 
