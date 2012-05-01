@@ -1,7 +1,7 @@
 
 var assert = require('assert')
 
-var gex = require('gex') 
+var gex = require('../lib/gex.js') 
 
 
 function s(obj){
@@ -86,5 +86,27 @@ module.exports = {
     assert.equal( s([]), s(g.on([null])) )
     assert.equal( s([]), s(g.on([NaN])) )
     assert.equal( s([]), s(g.on([undefined])) )
+  },
+
+  escapes: function() {
+    var g = gex('a**b')
+    assert.equal('a**b',g+'')
+    assert.equal('/^a\\*b$/',''+g.re())
+    assert.equal( 'a*b', g.on('a*b') ) 
+    assert.equal( null, g.on('a**b') ) 
+
+    g = gex('a*?b')
+    assert.equal('a*?b',g+'')
+    assert.equal('/^a\\?b$/',''+g.re())
+    assert.equal( 'a?b', g.on('a?b') ) 
+    assert.equal( null, g.on('a*?b') ) 
+  },
+
+  newlines: function() {
+    var g = gex('a*b')
+    assert.equal('/^a[\\s\\S]*b$/',''+g.re())
+
+    assert.equal( 'a\nb', g.on('a\nb') ) 
   }
+
 }
