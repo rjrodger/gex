@@ -1,15 +1,24 @@
+/* Copyright (c) 2011-2013 Richard Rodger, MIT License */
+"use strict";
+
+
+// mocha gex.test.js
+
 
 var assert = require('assert')
 
-var gex = require('../lib/gex.js') 
+
+var gex = require('..') 
 
 
 function s(obj){
   return JSON.stringify(obj)
 }
 
-module.exports = {
-  happy: function() {
+
+
+describe('gex', function() {
+  it('happy', function() {
     var ab = gex('ab')
     assert.equal( 'ab', ab.on('ab') )
     assert.equal( null, ab.on('a') )
@@ -52,25 +61,28 @@ module.exports = {
     assert.equal( 'aabb', a_b.on('aabb') )
     assert.equal( 'abbb', a_b.on('abbb') )
 
-  },
+  })
 
-  arrays: function() {
+
+  it('arrays', function() {
     var a_ = gex('a*')
     assert.equal( s(['ab','ac']), s(a_.on(['ab','ac'])) )
     assert.equal( s(['ab','ac']), s(a_.on(['ab','dd','ac'])) )
     assert.equal( s(['ab']), s(a_.on(['ab','dd','ee'])) )
     assert.equal( s([]), s(a_.on(['ff','dd','ee'])) )
     assert.equal( s([]), s(a_.on([])) )
-  },
+  })
 
-  objects: function() {
+
+  it('objects', function() {
     var foo_ = gex('foo*')
     assert.equal( s({foo:1}), s(foo_.on({foo:1})) )
     assert.equal( s({foo:1}), s(foo_.on({foo:1,doo:2})) )
     assert.equal( s({foo:1,food:3}), s(foo_.on({foo:1,doo:2,food:3})) )
-  },
+  })
 
-  dodgy: function() {
+
+  it('dodgy', function() {
     assert.equal( null, gex().on('aaa') )
     assert.equal( null, gex(null).on('aaa') )
     assert.equal( null, gex(NaN).on('aaa') )
@@ -86,9 +98,10 @@ module.exports = {
     assert.equal( s([]), s(g.on([null])) )
     assert.equal( s([]), s(g.on([NaN])) )
     assert.equal( s([]), s(g.on([undefined])) )
-  },
+  })
 
-  escapes: function() {
+
+  it('escapes', function() {
     var g = gex('a**b')
     assert.equal('a**b',g+'')
     assert.equal('/^a\\*b$/',''+g.re())
@@ -100,13 +113,14 @@ module.exports = {
     assert.equal('/^a\\?b$/',''+g.re())
     assert.equal( 'a?b', g.on('a?b') ) 
     assert.equal( null, g.on('a*?b') ) 
-  },
+  })
 
-  newlines: function() {
+
+  it('newlines', function() {
     var g = gex('a*b')
     assert.equal('/^a[\\s\\S]*b$/',''+g.re())
 
     assert.equal( 'a\nb', g.on('a\nb') ) 
-  }
+  })
 
-}
+})

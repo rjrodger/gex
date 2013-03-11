@@ -2,14 +2,15 @@
   "name": "gex",
   "description": "Glob expressions for JavaScript",
   "keywords": ["glob","star","question","mark","expression","regular"],
-  "version": "0.0.3",
+  "version": "0.1.1",
   "homepage": "https://github.com/rjrodger/gex",
   "author": "Richard Rodger <richard@ricebridge.com> (http://richardrodger.com/)",
     "contributors": [
     "Richard Rodger <richard@ricebridge.com> (http://richardrodger.com/)"
   ],
+  "license": "MIT",
   "dependencies": {
-    "underscore": ">=1.1.4"
+    "underscore": "~1.4.4"
   },
   "main": "lib/gex",
   "directories": {
@@ -18,5 +19,10 @@
   "repository": { "type" : "git", "url" : "https://github.com/rjrodger/gex.git" },
   "engines": {
     "node": "*"
-  }
+  },
+  "files":[
+    "README.md",
+    "LICENSE.txt",
+    "lib/gex.js"
+  ]
 }

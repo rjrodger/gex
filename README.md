@@ -2,9 +2,9 @@
 
 If you're using this library, feel free to contact me on twitter if you have any questions! :) [@rjrodger](http://twitter.com/rjrodger)
 
-Current Version: 0.0.3
+Current Version: 0.1.1
 
-Tested on: node 0.4 and 0.6
+Tested on: node 0.8
 
 Glob expressions for JavaScript
 
@@ -78,7 +78,3 @@ The unit tests use [expresso](https://github.com/visionmedia/expresso)
 The tests are in test/gex.test.js
 
 
-## Hacking around with real time charts
-
-![](http://chartaca.com/point/adb6995d-b4b3-4edf-8892-a6d1a2324831/s.gif)
-[Chartaca Hit Chart](http://chartaca.com/adb6995d-b4b3-4edf-8892-a6d1a2324831) 
