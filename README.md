@@ -6,7 +6,8 @@ Current Version: 0.1.1
 
 Tested on: node 0.8
 
-Glob expressions for JavaScript
+
+## Glob expressions for JavaScript
 
 *"When regular expressions are just too hard!"*
 
@@ -24,6 +25,12 @@ You can also match against objects and arrays:
 
     gex('a*').on( ['ab','zz','ac'] ) // returns ['ab','ac']
     gex('a*').on( {ab:1,zz:2,ac:3} ) // returns {ab:1,ac:3}
+
+And also match against multiple globs:
+
+    gex(['a*','b*']).on( 'bx' ) // returns 'bx'
+    gex(['a*','b*']).on( ['ax','zz','bx'] ) // returns ['ax','bx']
+
 
 One of the most useful things you can do with this library is quick
 assertions in unit tests. For example if your objects contain dates,
@@ -71,10 +78,12 @@ itself: `on`. The `on` function accepts any JavaScript data type, and operates a
 
 ## Testing
 
-The unit tests use [expresso](https://github.com/visionmedia/expresso)
+The unit tests use [mocha](https://github.com/visionmedia/mocha)
 
-    npm install expresso
+    npm install mocha
 
-The tests are in test/gex.test.js
+Run with:
+
+    mocha test/gex.test.js
 
 

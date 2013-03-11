@@ -6,6 +6,7 @@
 
 
 var assert = require('assert')
+var util   = require('util')
 
 
 var gex = require('..') 
@@ -123,4 +124,19 @@ describe('gex', function() {
     assert.equal( 'a\nb', g.on('a\nb') ) 
   })
 
+
+  it('multi', function() {
+    var g = gex(['a','b'])
+    assert.equal('a',g.on('a'))
+    assert.equal('b',g.on('b'))
+    assert.equal('{ a: /^a$/, b: /^b$/ }',util.inspect(g.re()))
+
+    g = gex(['a*','b'])
+    assert.equal('ax',g.on('ax'))
+    assert.equal('b',g.on('b'))
+    assert.equal("{ 'a*': /^a[\\s\\S]*$/, b: /^b$/ }",util.inspect(g.re()))
+
+    assert.equal( 'bx', ''+gex(['a*','b*']).on( 'bx' ) )
+    assert.equal( 'ax,bx', ''+gex(['a*','b*']).on( ['ax','zz','bx'] ) )
+  })
 })
