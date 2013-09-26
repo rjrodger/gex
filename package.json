@@ -1,28 +1,43 @@
 {
   "name": "gex",
   "description": "Glob expressions for JavaScript",
-  "keywords": ["glob","star","question","mark","expression","regular"],
-  "version": "0.1.1",
+  "keywords": [
+    "glob",
+    "star",
+    "question",
+    "mark",
+    "expression",
+    "regular"
+  ],
+  "version": "0.1.2",
   "homepage": "https://github.com/rjrodger/gex",
-  "author": "Richard Rodger <richard@ricebridge.com> (http://richardrodger.com/)",
-    "contributors": [
-    "Richard Rodger <richard@ricebridge.com> (http://richardrodger.com/)"
+  "author": "Richard Rodger (http://richardrodger.com/)",
+  "contributors": [
+    "Richard Rodger (http://richardrodger.com/)"
   ],
   "license": "MIT",
   "dependencies": {
-    "underscore": "~1.4.4"
+    "underscore": "~1.5.2"
   },
-  "main": "lib/gex",
-  "directories": {
-    "lib": "lib"
+  "main": "gex.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rjrodger/gex.git"
   },
-  "repository": { "type" : "git", "url" : "https://github.com/rjrodger/gex.git" },
   "engines": {
     "node": "*"
   },
-  "files":[
+  "files": [
     "README.md",
     "LICENSE.txt",
-    "lib/gex.js"
-  ]
+    "gex.js"
+  ],
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine-node ./test",
+    "browser": "phantomjs test/run-jasmine.js test/jasmine.html",
+    "build": "uglifyjs gex.js -c \"evaluate=false\" --comments \"/ Copyright .*/\" -m --source-map gex-min.map -o gex-min.js"
+  },
+  "devDependencies": {
+    "jasmine-node": "~1.11.0"
+  }
 }

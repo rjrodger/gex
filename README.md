@@ -2,9 +2,12 @@
 
 If you're using this library, feel free to contact me on twitter if you have any questions! :) [@rjrodger](http://twitter.com/rjrodger)
 
-Current Version: 0.1.1
+This module works on both Node.js and browsers.
 
-Tested on: node 0.8
+
+Current Version: 0.1.2
+
+Tested on: Node.js 0.10.19, Chrome 29, Firefox 23, Safari 5.1, Opera 12.11
 
 
 ## Glob expressions for JavaScript
