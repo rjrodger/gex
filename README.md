@@ -9,6 +9,9 @@ Current Version: 0.1.3
 
 Tested on: Node.js 0.10.19, Chrome 29, Firefox 23, Safari 5.1, Opera 12.11
 
+[![Build Status](https://travis-ci.org/rjrodger/gex.png?branch=master)](https://travis-ci.org/rjrodger/gex)
+
+
 
 ## Glob expressions for JavaScript
 
