@@ -4,7 +4,7 @@
 
 (function() {
   var root        = this
-  var previousGex = root.gex
+  var previous_gex = root.gex
 
   var has_require = typeof require !== 'undefined'
 
@@ -37,26 +37,6 @@
       return gexstr
     }
 
-/*
-    function gexstr(gexexp) {
-      var gs = []
-      if( _.isArray(gexexp) || _.isArguments(gexexp) ) {
-        for( var i = 0; i < gexexp.length; i++ ){
-          var s = clean(gexexp[i])
-          gexexp.push( 
-            ( '*' == s || '?' == s ) ? s
-              : self.esc(s)
-          )
-        }
-        gs = gs.join('')
-      }
-      else {
-        gs = clean(gexexp)
-      }
-      return gs
-    }
-*/
-
     function match(str) {
       str = ''+str
       var hasmatch = false
@@ -70,8 +50,8 @@
     }
 
 
-    _.noConflict = function() {
-      root._ = previousGex;
+    self.noConflict = function() {
+      root.previous_gex = previous_gex;
       return self;
     }
 
