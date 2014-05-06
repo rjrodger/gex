@@ -5,9 +5,9 @@ If you're using this library, feel free to contact me on twitter if you have any
 This module works on both Node.js and browsers.
 
 
-Current Version: 0.1.3
+Current Version: 0.1.4
 
-Tested on: Node.js 0.10.19, Chrome 29, Firefox 23, Safari 5.1, Opera 12.11
+Tested on: Node.js 0.10.26, Chrome 34, Firefox 28, Safari 5.1, Opera 12.16
 
 [![Build Status](https://travis-ci.org/rjrodger/gex.png?branch=master)](https://travis-ci.org/rjrodger/gex)
 

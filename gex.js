@@ -1,8 +1,9 @@
 /* Copyright (c) 2011-2013 Richard Rodger, MIT License, https://github.com/rjrodger/patrun */
-"use strict";
 
 
 (function() {
+  "use strict";
+
   var root        = this
   var previous_gex = root.gex
 
@@ -51,7 +52,7 @@
 
 
     self.noConflict = function() {
-      root.previous_gex = previous_gex;
+      root.gex = previous_gex;
       return self;
     }
 
