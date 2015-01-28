@@ -1,4 +1,5 @@
 /* Copyright (c) 2011-2015 Richard Rodger, MIT License */
+/* jshint node:true, asi:true, eqnull:true */
 
 ;(function() {
   "use strict";
@@ -22,19 +23,15 @@
     var self = this
 
     function dodgy(obj) {
-      return ( _.isNull(obj)
-               || _.isNaN(obj) 
-               || _.isUndefined(obj) )
+      return ( _.isNull(obj) || _.isNaN(obj) || _.isUndefined(obj) );
     }
 
     function clean(gexexp) {
       var gexstr = ''+gexexp
-      if( _.isNull(gexexp)
-          || _.isNaN(gexexp) 
-          || _.isUndefined(gexexp) ) {
+      if( _.isNull(gexexp) || _.isNaN(gexexp) || _.isUndefined(gexexp) ) {
         gexstr = ''
       } 
-      return gexstr
+      return gexstr;
     }
 
     function match(str) {
@@ -45,7 +42,7 @@
       for(var i = 0; i < gexstrs.length && !hasmatch; i++ ) {
         hasmatch = !!gexmap[gexstrs[i]].exec(str)
       }
-      return hasmatch
+      return hasmatch;
     }
 
 
@@ -56,18 +53,17 @@
 
 
     self.on = function(obj) {
-      if( _.isString(obj) 
-          || _.isNumber(obj) 
-          || _.isBoolean(obj) 
-          || _.isDate(obj) 
-          || _.isRegExp(obj) 
+      if( _.isString(obj) || 
+          _.isNumber(obj) || 
+          _.isBoolean(obj) || 
+          _.isDate(obj) || 
+          _.isRegExp(obj) 
         ) 
       {
-        return match(obj) ? obj : null
+        return match(obj) ? obj : null;
       }
 
-      else if( _.isArray(obj)
-               || _.isArguments(obj)
+      else if( _.isArray(obj) || _.isArguments(obj)
              ) {
                var out = []
                for( var i = 0; i < obj.length; i++ ) {
@@ -75,27 +71,27 @@
                    out.push(obj[i])
                  }
                }
-               return out
+               return out;
              }
 
       else if( dodgy(obj) ) {
-        return null
+        return null;
       }
       
       else if( _.isObject(obj) ) {
-        var out = {}
+        var outobj = {}
         for( var p in obj ) {
           if( obj.hasOwnProperty(p) ) {
             if( match(p) ) {
-              out[p] = obj[p]
+              outobj[p] = obj[p]
             }
           }
         }
-        return out
+        return outobj;
       }
 
       else {
-        return null
+        return null;
       }
     }
 
@@ -103,13 +99,13 @@
       var gexstr = clean(gexexp)
       gexstr = gexstr.replace(/\*/g,'**')
       gexstr = gexstr.replace(/\?/g,'*?')
-      return gexstr
+      return gexstr;
     }
 
 
     self.re = function(gs) {
-      if( '' == gs || gs ) {
-        var gs = self.escregexp(gs)
+      if( '' === gs || gs ) {
+        gs = self.escregexp(gs)
 
         // use [\s\S] instead of . to match newlines
         gs = gs.replace(/\\\*/g,'[\\s\\S]*')
@@ -121,20 +117,20 @@
 
         gs = '^'+gs+'$'
 
-        return new RegExp(gs)
+        return new RegExp(gs);
       }
       else {
         var gexstrs = _.keys(gexmap)
-        return 1 == gexstrs.length ? gexmap[gexstrs[0]] : _.clone(gexmap)
+        return 1 == gexstrs.length ? gexmap[gexstrs[0]] : _.clone(gexmap);
       }
     }
 
     self.escregexp = function(restr) {
-      return restr ? (''+restr).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&") : ''
+      return restr ? (''+restr).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&") : '';
     }
 
     self.toString = function() {
-      return ''+_.keys(gexmap)
+      return ''+_.keys(gexmap);
     }
 
     var gexstrs = (null==gexspec||_.isNaN(gexspec)) ? 
@@ -150,8 +146,8 @@
 
 
   function gex(gexspec) {
-    var gex = new Gex(gexspec)
-    return gex
+    var gexobj = new Gex(gexspec)
+    return gexobj;
   }
   gex.Gex = Gex
 

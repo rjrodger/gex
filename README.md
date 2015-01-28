@@ -4,13 +4,15 @@ If you're using this library, feel free to contact me on twitter if you have any
 
 This module works on both Node.js and browsers.
 
+[![Gitter chat](https://badges.gitter.im/rjrodger/gex.png)](https://gitter.im/rjrodger/gex)
 
-Current Version: 0.1.4
+Current Version: 0.2.0
 
-Tested on: Node.js 0.10.26, Chrome 34, Firefox 28, Safari 5.1, Opera 12.16
+Tested on: Node.js 0.10.35, Chrome 40, Firefox 34, Safari 7, Opera 26
 
 [![Build Status](https://travis-ci.org/rjrodger/gex.png?branch=master)](https://travis-ci.org/rjrodger/gex)
 
+[Annotated Source](http://rjrodger.github.io/gex/doc/gex.html)
 
 
 ## Glob expressions for JavaScript
@@ -81,15 +83,4 @@ itself: `on`. The `on` function accepts any JavaScript data type, and operates a
    * arrays: return a new array with all the elements that matched. Elements are not modified, but are converted to strings for matching. Does not recurse into elements.
    * objects: return a new object with with all the property *names* that matched. Values are copied by reference. 
    * null, NAN, undefined: never match anything
-
-## Testing
-
-The unit tests use [mocha](https://github.com/visionmedia/mocha)
-
-    npm install mocha
-
-Run with:
-
-    mocha test/gex.test.js
-
 

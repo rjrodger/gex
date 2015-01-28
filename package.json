@@ -9,7 +9,7 @@
     "expression",
     "regular"
   ],
-  "version": "0.1.4",
+  "version": "0.2.0",
   "homepage": "https://github.com/rjrodger/gex",
   "author": "Richard Rodger (http://richardrodger.com/)",
   "contributors": [
@@ -32,13 +32,7 @@
     "gex-min.map"
   ],
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node ./test",
-    "browser": "./node_modules/.bin/phantomjs test/run-jasmine.js test/jasmine.html",
-    "build": "./node_modules/.bin/uglifyjs gex.js -c \"evaluate=false\" --comments \"/ Copyright .*/\" -m --source-map gex-min.map -o gex-min.js"
-  },
-  "devDependencies": {
-    "jasmine-node": "~1.11.0",
-    "phantomjs": "~1.9.7-5",
-    "uglify-js": "~2.4.13"
+    "test": "./test.sh",
+    "build": "./build.sh"
   }
 }
