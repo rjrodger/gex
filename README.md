@@ -1,5 +1,7 @@
 # gex
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rjrodger/gex?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 If you're using this library, feel free to contact me on twitter if you have any questions! :) [@rjrodger](http://twitter.com/rjrodger)
 
 This module works on both Node.js and browsers.
