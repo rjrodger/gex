@@ -1,7 +1,6 @@
-/* Copyright (c) 2011-2013 Richard Rodger, MIT License, https://github.com/rjrodger/patrun */
+/* Copyright (c) 2011-2015 Richard Rodger, MIT License */
 
-
-(function() {
+;(function() {
   "use strict";
 
   var root        = this
@@ -13,7 +12,7 @@
 
   if( typeof _ === 'undefined' ) {
     if( has_require ) {
-      _ = require('underscore')
+      _ = require('lodash')
     }
     else throw new Error('gex requires underscore, see http://underscorejs.org');
   }
@@ -42,10 +41,9 @@
       str = ''+str
       var hasmatch = false
       var gexstrs = _.keys(gexmap)
-      //console.log(gexstrs)
+
       for(var i = 0; i < gexstrs.length && !hasmatch; i++ ) {
         hasmatch = !!gexmap[gexstrs[i]].exec(str)
-        //console.log(hasmatch+' '+gexstrs[i]+' '+str)
       }
       return hasmatch
     }
@@ -65,7 +63,6 @@
           || _.isRegExp(obj) 
         ) 
       {
-        //return (!!re.exec(''+obj)) ? obj : null
         return match(obj) ? obj : null
       }
 
@@ -74,7 +71,6 @@
              ) {
                var out = []
                for( var i = 0; i < obj.length; i++ ) {
-                 //if( !dodgy(obj[i]) && !!re.exec(''+obj[i]) ) {
                  if( !dodgy(obj[i]) && match(obj[i]) ) {
                    out.push(obj[i])
                  }
@@ -90,7 +86,6 @@
         var out = {}
         for( var p in obj ) {
           if( obj.hasOwnProperty(p) ) {
-            //if( !!re.exec(p) ) {
             if( match(p) ) {
               out[p] = obj[p]
             }
@@ -119,8 +114,6 @@
         // use [\s\S] instead of . to match newlines
         gs = gs.replace(/\\\*/g,'[\\s\\S]*')
         gs = gs.replace(/\\\?/g,'[\\s\\S]')
-        //gs = gs.replace(/\\\*/g,'.*')
-        //gs = gs.replace(/\\\?/g,'.')
 
         // escapes ** and *?
         gs = gs.replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g,'\\\*')
@@ -144,9 +137,8 @@
       return ''+_.keys(gexmap)
     }
 
-
-    var gexstrs = (null==gexspec||_.isNaN(gexspec)) ? [] : _.isArray(gexspec) ? gexspec : [gexspec]
-    //console.log(gexstrs)
+    var gexstrs = (null==gexspec||_.isNaN(gexspec)) ? 
+          [] : _.isArray(gexspec) ? gexspec : [gexspec]
 
     var gexmap = {}
 
@@ -154,8 +146,6 @@
       var re = self.re(str)
       gexmap[str]=re
     })
-
-    //console.dir(gexmap)
   }
 
 
@@ -164,7 +154,6 @@
     return gex
   }
   gex.Gex = Gex
-
 
 
   if( typeof exports !== 'undefined' ) {
