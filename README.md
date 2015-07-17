@@ -6,9 +6,9 @@ This module works on both Node.js and browsers.
 
 [![Gitter chat](https://badges.gitter.im/rjrodger/gex.png)](https://gitter.im/rjrodger/gex)
 
-Current Version: 0.2.0
+Current Version: 0.2.1
 
-Tested on: Node.js 0.10.35, Chrome 40, Firefox 34, Safari 7, Opera 26
+Tested on: node 0.10, 0.11, 0.12, iojs, Chrome 43, Safari 7, Firefox 38
 
 [![Build Status](https://travis-ci.org/rjrodger/gex.png?branch=master)](https://travis-ci.org/rjrodger/gex)
 
