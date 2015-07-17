@@ -74,10 +74,6 @@
                return out;
              }
 
-      else if( dodgy(obj) ) {
-        return null;
-      }
-      
       else if( _.isObject(obj) ) {
         var outobj = {}
         for( var p in obj ) {
@@ -133,12 +129,13 @@
       return ''+_.keys(gexmap);
     }
 
-    var gexstrs = (null==gexspec||_.isNaN(gexspec)) ? 
-          [] : _.isArray(gexspec) ? gexspec : [gexspec]
+
+    var gexstrs = _.isArray(gexspec) ? gexspec : [gexspec]
 
     var gexmap = {}
 
     _.each( gexstrs, function(str) {
+      str = clean(str)
       var re = self.re(str)
       gexmap[str]=re
     })

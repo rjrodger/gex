@@ -111,6 +111,11 @@ describe('gex', function() {
     expect( '/^a\\?b$/' ).toBe( ''+g.re())
     expect( 'a?b' ).toBe(  g.on('a?b') ) 
     expect( null ).toBe(  g.on('a*?b') ) 
+
+    expect( g.esc('') ).toBe( '' )
+    expect( g.esc('*') ).toBe( '**' )
+    expect( g.esc('?') ).toBe( '*?' )
+    
   })
 
 
@@ -118,7 +123,30 @@ describe('gex', function() {
     var g = gex('a*b')
     expect( '/^a[\\s\\S]*b$/',''+g.re())
 
-    expect( 'a\nb' ).toBe(  g.on('a\nb') ) 
+    expect( 'a\nb' ).toBe( g.on('a\nb') ) 
+  })
+
+
+  it('zero', function() {
+    expect( '0' ).toBe( gex('0').on('0') )
+    expect( '0' ).toBe( gex('0*').on('0') )
+    expect( '0' ).toBe( gex('*0').on('0') )
+    expect( '0' ).toBe( gex('*0*').on('0') )
+
+    expect( '0' ).toBe( gex(['0']).on('0') )
+    expect( '0' ).toBe( gex(['0*']).on('0') )
+    expect( '0' ).toBe( gex(['*0']).on('0') )
+    expect( '0' ).toBe( gex(['*0*']).on('0') )
+
+    expect( '1' ).toBe( gex(1).on('1') )
+    expect( '100' ).toBe( gex(100).on('100') )
+    expect( '0' ).toBe( gex(0).on('0') )
+  })
+
+
+  it('noConflict', function() {
+    var g = gex('a').noConflict()
+    expect( 'a' ).toBe( g.on('a') ) 
   })
 
 
