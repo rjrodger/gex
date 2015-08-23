@@ -4,19 +4,14 @@
 ;(function() {
   "use strict";
 
-  var root        = this
+  var root         = this
   var previous_gex = root.gex
 
   var has_require = typeof require !== 'undefined'
 
-  var _ = root._
-
-  if( typeof _ === 'undefined' ) {
-    if( has_require ) {
-      _ = require('lodash')
-    }
-    else throw new Error('gex requires underscore, see http://underscorejs.org');
-  }
+  var _ = root._ || has_require && require('lodash')
+  if( !_ ) 
+    throw new Error('gex requires underscore, see http://underscorejs.org')
 
 
   function Gex(gexspec) {
@@ -126,13 +121,17 @@
     }
 
     self.toString = function() {
-      return ''+_.keys(gexmap);
+      return desc ? desc : (desc = 'gex['+_.keys(gexmap)+']' )
     }
 
+    self.inspect = function() {
+      return self.toString()
+    }
 
     var gexstrs = _.isArray(gexspec) ? gexspec : [gexspec]
+    var gexmap  = {}
+    var desc
 
-    var gexmap = {}
 
     _.each( gexstrs, function(str) {
       str = clean(str)

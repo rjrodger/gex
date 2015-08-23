@@ -36,19 +36,14 @@
 ;(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
 <span class="hljs-pi">  "use strict"</span>;
 
-  <span class="hljs-keyword">var</span> root        = <span class="hljs-keyword">this</span>
+  <span class="hljs-keyword">var</span> root         = <span class="hljs-keyword">this</span>
   <span class="hljs-keyword">var</span> previous_gex = root.gex
 
   <span class="hljs-keyword">var</span> has_require = <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">require</span> !== <span class="hljs-string">'undefined'</span>
 
-  <span class="hljs-keyword">var</span> _ = root._
-
-  <span class="hljs-keyword">if</span>( <span class="hljs-keyword">typeof</span> _ === <span class="hljs-string">'undefined'</span> ) {
-    <span class="hljs-keyword">if</span>( has_require ) {
-      _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>)
-    }
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'gex requires underscore, see http://underscorejs.org'</span>);
-  }
+  <span class="hljs-keyword">var</span> _ = root._ || has_require &amp;&amp; <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>)
+  <span class="hljs-keyword">if</span>( !_ ) 
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'gex requires underscore, see http://underscorejs.org'</span>)
 
 
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Gex</span>(<span class="hljs-params">gexspec</span>) </span>{
@@ -182,13 +177,17 @@
     }
 
     self.toString = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-      <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>+_.keys(gexmap);
+      <span class="hljs-keyword">return</span> desc ? desc : (desc = <span class="hljs-string">'gex['</span>+_.keys(gexmap)+<span class="hljs-string">']'</span> )
     }
 
+    self.inspect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> self.toString()
+    }
 
     <span class="hljs-keyword">var</span> gexstrs = _.isArray(gexspec) ? gexspec : [gexspec]
+    <span class="hljs-keyword">var</span> gexmap  = {}
+    <span class="hljs-keyword">var</span> desc
 
-    <span class="hljs-keyword">var</span> gexmap = {}
 
     _.each( gexstrs, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) </span>{
       str = clean(str)

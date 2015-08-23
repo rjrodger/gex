@@ -1,11 +1,10 @@
-/* Copyright (c) 2013 Richard Rodger, MIT License */
+/* Copyright (c) 2013-2015 Richard Rodger, MIT License */
 "use strict";
 
 
 if( typeof gex === 'undefined' ) {
   var gex = require('..')
 }
-
 
 
 
@@ -101,13 +100,13 @@ describe('gex', function() {
 
   it('escapes', function() {
     var g = gex('a**b')
-    expect( 'a**b' ).toBe( g+'')
+    expect( 'gex[a**b]' ).toBe( g+'')
     expect( '/^a\\*b$/' ).toBe( ''+g.re())
     expect( 'a*b' ).toBe(  g.on('a*b') ) 
     expect( null ).toBe(  g.on('a**b') ) 
 
     g = gex('a*?b')
-    expect( 'a*?b' ).toBe( g+'')
+    expect( 'gex[a*?b]' ).toBe( g+'')
     expect( '/^a\\?b$/' ).toBe( ''+g.re())
     expect( 'a?b' ).toBe(  g.on('a?b') ) 
     expect( null ).toBe(  g.on('a*?b') ) 
@@ -163,6 +162,15 @@ describe('gex', function() {
 
     expect( 'bx' ).toBe(  ''+gex(['a*','b*']).on( 'bx' ) )
     expect( 'ax ).toBe( bx', ''+gex(['a*','b*']).on( ['ax','zz','bx'] ) )
+  })
+
+
+  it('inspect', function(){
+    var g = gex('a*')
+    expect( g.inspect() ).toBe( 'gex[a*]') 
+
+    g = gex(['a*','*b'])
+    expect( g.inspect() ).toBe( 'gex[a*,*b]') 
   })
 })
 
