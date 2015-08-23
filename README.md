@@ -6,7 +6,7 @@ This module works on both Node.js and browsers.
 
 [![Gitter chat](https://badges.gitter.im/rjrodger/gex.png)](https://gitter.im/rjrodger/gex)
 
-Current Version: 0.2.1
+Current Version: 0.2.2
 
 Tested on: node 0.10, 0.11, 0.12, iojs, Chrome 43, Safari 7, Firefox 38
 
