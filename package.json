@@ -16,7 +16,6 @@
     "Richard Rodger (http://richardrodger.com/)"
   ],
   "license": "MIT",
-
   "main": "gex.js",
   "repository": {
     "type": "git",
@@ -31,6 +30,7 @@
   ],
   "scripts": {
     "test": "lab -P spec",
+    "coverage": "lab -s -P spec -r lcov | coveralls ",
     "build": "./build.sh"
   },
   "dependencies": {
@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "code": "^1.5.0",
+    "coveralls": "^2.11.6",
     "lab": "^6.2.0",
     "serve": "1.4.0"
   }
