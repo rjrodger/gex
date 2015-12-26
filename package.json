@@ -16,9 +16,7 @@
     "Richard Rodger (http://richardrodger.com/)"
   ],
   "license": "MIT",
-  "dependencies": {
-    "lodash": "3.10.0"
-  },
+
   "main": "gex.js",
   "repository": {
     "type": "git",
@@ -32,10 +30,15 @@
     "gex-min.map"
   ],
   "scripts": {
-    "test": "./test.sh",
+    "test": "lab -P spec",
     "build": "./build.sh"
   },
+  "dependencies": {
+    "lodash": "3.10.0"
+  },
   "devDependencies": {
+    "code": "^1.5.0",
+    "lab": "^6.2.0",
     "serve": "1.4.0"
   }
 }
