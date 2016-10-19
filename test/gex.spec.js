@@ -78,6 +78,11 @@ describe('gex', function() {
     expect( s({foo:1,food:3}) ).toBe( s(foo_.on({foo:1,doo:2,food:3})) )
   })
 
+  it('object without prototype', function() {
+    var obj = Object.create(null)
+    obj.foo = 'bar'
+    expect(s({foo: 'bar'})).toBe( s(gex('foo').on(obj)) )
+  })
 
   it('dodgy', function() {
     expect( null ).toBe(  gex().on('aaa') )
