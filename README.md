@@ -1,18 +1,9 @@
 # gex
 
-If you're using this library, feel free to contact me on twitter if you have any questions! :) [@rjrodger](http://twitter.com/rjrodger)
-
-This module works on both Node.js and browsers.
-
-[![Gitter chat](https://badges.gitter.im/rjrodger/gex.png)](https://gitter.im/rjrodger/gex)
-
-Current Version: 0.2.1
-
-Tested on: node 0.10, 0.11, 0.12, iojs, Chrome 43, Safari 7, Firefox 38
-
-[![Build Status](https://travis-ci.org/rjrodger/gex.png?branch=master)](https://travis-ci.org/rjrodger/gex)
-
-[Annotated Source](http://rjrodger.github.io/gex/doc/gex.html)
+[![npm version][npm-badge]][npm-url]
+[![Build Status][travis-badge]][travis-url]
+[![Coverage Status][coveralls-badge]][coveralls-url]
+[![Dependency Status][david-badge]][david-url]
 
 
 ## Glob expressions for JavaScript
@@ -83,4 +74,21 @@ itself: `on`. The `on` function accepts any JavaScript data type, and operates a
    * arrays: return a new array with all the elements that matched. Elements are not modified, but are converted to strings for matching. Does not recurse into elements.
    * objects: return a new object with with all the property *names* that matched. Values are copied by reference. 
    * null, NAN, undefined: never match anything
+
+## Support
+
+If you're using this library, feel free to contact me on twitter if you have any questions! :) [@rjrodger](http://twitter.com/rjrodger)
+
+This module works on both Node.js and browsers.
+
+
+
+[npm-badge]: https://badge.fury.io/js/gex.svg
+[npm-url]: https://badge.fury.io/js/gex
+[travis-badge]: https://api.travis-ci.org/rjrodger/gex.svg?branch=master
+[travis-url]: https://travis-ci.org/rjrodger/gex?branch=master
+[coveralls-badge]:https://coveralls.io/repos/rjrodger/gex/badge.svg?branch=master&service=github
+[coveralls-url]: https://coveralls.io/github/rjrodger/gex?branch=master
+[david-badge]: https://david-dm.org/rjrodger/gex.svg
+[david-url]: https://david-dm.org/rjrodger/gex
 

@@ -32,10 +32,14 @@
     "gex-min.map"
   ],
   "scripts": {
-    "test": "./test.sh",
-    "build": "./build.sh"
+    "test": "lab -v -P test -t 80 -I URL,URLSearchParams",
+    "coveralls": "lab -s -P test -r lcov -I URL,URLSearchParams | coveralls",
+    "prettier": "prettier --write --no-semi --single-quote gex.js lib/*.js test/*.js"
   },
   "devDependencies": {
-    "serve": "6"
+    "serve": "6",
+    "code": "4",
+    "coveralls": "3",
+    "lab": "14"
   }
 }
