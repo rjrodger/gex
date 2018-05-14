@@ -72,7 +72,7 @@
       else if( _.isObject(obj) ) {
         var outobj = {}
         for( var p in obj ) {
-          if( obj.hasOwnProperty(p) ) {
+          if( Object.prototype.hasOwnProperty.call(obj, p) ) {
             if( match(p) ) {
               outobj[p] = obj[p]
             }

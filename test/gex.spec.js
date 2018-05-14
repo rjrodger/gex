@@ -82,6 +82,11 @@ describe('gex', function () {
     done()
   })
 
+  it('object without prototype', function() {
+    var obj = Object.create(null)
+    obj.foo = 'bar'
+    expect(s({foo: 'bar'})).toBe( s(gex('foo').on(obj)) )
+  })
 
   it('dodgy', function (done) {
     expect(gex().on('aaa')).to.equal(gex().on('aaa'))
