@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2015 Richard Rodger, MIT License */
+/* Copyright (c) 2011-2018 Richard Rodger, MIT License */
 /* jshint node:true, asi:true, eqnull:true */
 
 ;(function() {

@@ -1,8 +1,8 @@
 if [ ! -d "./node_modules/jasmine-node" ]; then
-  npm install jasmine-node@1
+  npm install --no-save jasmine-node@1
 fi
 if [ ! -d "./node_modules/phantomjs" ]; then
-  npm install phantomjs@1.8.2-3
+  npm install --no-save phantomjs@1.8.2-3
 fi
 
 ./node_modules/.bin/jasmine-node ./test

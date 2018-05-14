@@ -1,11 +1,11 @@
 if [ ! -d "./node_modules/uglify-js" ]; then
-  npm install uglify-js@2
+  npm install --no-save uglify-js@2
 fi
 if [ ! -d "./node_modules/docco" ]; then
-  npm install docco@0
+  npm install --no-save docco@0
 fi
 if [ ! -d "./node_modules/jshint" ]; then
-  npm install jshint@2
+  npm install --no-save jshint@2
 fi
 
 
