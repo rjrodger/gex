@@ -37,7 +37,7 @@
     "prettier": "prettier --write --no-semi --single-quote gex.js lib/*.js test/*.js"
   },
   "devDependencies": {
-    "serve": "6",
+    "serve": "7",
     "code": "4",
     "coveralls": "3",
     "lab": "14"
