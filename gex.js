@@ -1,27 +1,21 @@
-/* Copyright (c) 2011-2018 Richard Rodger, MIT License */
-/* jshint node:true, asi:true, eqnull:true */
+/* Copyright (c) 2011-2019 Richard Rodger, MIT License */
 
-;(function() {
+// eslint-disable-next-line
+;(function() { 
   'use strict'
   var root = this
   var previous_gex = root.gex
-
-  var has_require = typeof require !== 'undefined'
-
-  var _ = root._ || (has_require && require('lodash'))
-  if (!_)
-    throw new Error('gex requires underscore, see http://underscorejs.org')
 
   function Gex(gexspec) {
     var self = this
 
     function dodgy(obj) {
-      return _.isNull(obj) || _.isNaN(obj) || _.isUndefined(obj)
+      return null == obj || void 0 == obj || Number.isNaN(obj)
     }
 
     function clean(gexexp) {
       var gexstr = '' + gexexp
-      if (_.isNull(gexexp) || _.isNaN(gexexp) || _.isUndefined(gexexp)) {
+      if(dodgy(gexexp)) {
         gexstr = ''
       }
       return gexstr
@@ -30,7 +24,7 @@
     function match(str) {
       str = '' + str
       var hasmatch = false
-      var gexstrs = _.keys(gexmap)
+      var gexstrs = Object.keys(gexmap)
 
       for (var i = 0; i < gexstrs.length && !hasmatch; i++) {
         hasmatch = !!gexmap[gexstrs[i]].exec(str)
@@ -44,15 +38,15 @@
     }
 
     self.on = function(obj) {
-      if (
-        _.isString(obj) ||
-        _.isNumber(obj) ||
-        _.isBoolean(obj) ||
-        _.isDate(obj) ||
-        _.isRegExp(obj)
+      var typeof_obj = typeof(obj)
+      if ( 'string' === typeof_obj ||
+           'number' === typeof_obj ||
+           'boolean' === typeof_obj ||
+           obj instanceof Date ||
+           obj instanceof RegExp
       ) {
         return match(obj) ? obj : null
-      } else if (_.isArray(obj) || _.isArguments(obj)) {
+      } else if (Array.isArray(obj) ) {
         var out = []
         for (var i = 0; i < obj.length; i++) {
           if (!dodgy(obj[i]) && match(obj[i])) {
@@ -60,7 +54,7 @@
           }
         }
         return out
-      } else if (_.isObject(obj)) {
+      } else if ('object' === typeof_obj) {
         var outobj = {}
         for (var p in obj) {
           if (Object.prototype.hasOwnProperty.call(obj, p)) {
@@ -91,15 +85,15 @@
         gs = gs.replace(/\\\?/g, '[\\s\\S]')
 
         // escapes ** and *?
-        gs = gs.replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g, '\\\*')
-        gs = gs.replace(/\[\\s\\S\]\*\[\\s\\S\]/g, '\\\?')
+        gs = gs.replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g, '\\*')
+        gs = gs.replace(/\[\\s\\S\]\*\[\\s\\S\]/g, '\\?')
 
         gs = '^' + gs + '$'
 
         return new RegExp(gs)
       } else {
-        var gexstrs = _.keys(gexmap)
-        return 1 == gexstrs.length ? gexmap[gexstrs[0]] : _.clone(gexmap)
+        var gexstrs = Object.keys(gexmap)
+        return 1 == gexstrs.length ? gexmap[gexstrs[0]] : {...gexmap}
       }
     }
 
@@ -110,18 +104,18 @@
     }
 
     self.toString = function() {
-      return desc ? desc : (desc = 'gex[' + _.keys(gexmap) + ']')
+      return desc ? desc : (desc = 'gex[' + Object.keys(gexmap) + ']')
     }
 
     self.inspect = function() {
       return self.toString()
     }
 
-    var gexstrs = _.isArray(gexspec) ? gexspec : [gexspec]
+    var gexstrs = Array.isArray(gexspec) ? gexspec : [gexspec]
     var gexmap = {}
     var desc
 
-    _.each(gexstrs, function(str) {
+    gexstrs.forEach(function(str) {
       str = clean(str)
       var re = self.re(str)
       gexmap[str] = re

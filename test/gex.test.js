@@ -1,8 +1,8 @@
-/* Copyright (c) 2013-2015 Richard Rodger, MIT License */
+/* Copyright (c) 2013-2019 Richard Rodger, MIT License */
 'use strict'
 
-var Lab = require('lab')
-var Code = require('code')
+var Lab = require('@hapi/lab')
+var Code = require('@hapi/code')
 
 var lab = (exports.lab = Lab.script())
 var describe = lab.describe
@@ -15,7 +15,7 @@ function s(obj) {
 }
 
 describe('gex', function() {
-  it('happy', function(done) {
+  it('happy', () => {
     var ab = gex('ab')
     expect(ab.on('ab')).to.equal('ab')
     expect(ab.on('a')).to.equal(null)
@@ -56,21 +56,18 @@ describe('gex', function() {
     expect(a_b.on('aaab')).to.equal('aaab')
     expect(a_b.on('aabb')).to.equal('aabb')
     expect(a_b.on('abbb')).to.equal('abbb')
-    done()
   })
 
-  it('arrays', function(done) {
+  it('arrays', () => {
     var a_ = gex('a*') // maybe: to deep equal
     expect(s(a_.on(['ab', 'ac']))).to.equal(s(['ab', 'ac']))
     expect(s(a_.on(['ab', 'dd', 'ac']))).to.equal(s(['ab', 'ac']))
     expect(s(a_.on(['ab', 'dd', 'ee']))).to.equal(s(a_.on(['ab', 'dd', 'ee'])))
     expect(s(a_.on(['ff', 'dd', 'ee']))).to.equal(s(a_.on(['ff', 'dd', 'ee'])))
     expect(s(a_.on([]))).to.equal(s(a_.on([])))
-
-    done()
   })
 
-  it('objects', function(done) {
+  it('objects', () => {
     var foo_ = gex('foo*')
     expect(s(foo_.on({ foo: 1 }))).to.equal(s(foo_.on({ foo: 1 })))
     expect(s(foo_.on({ foo: 1, doo: 2 }))).to.equal(
@@ -79,17 +76,15 @@ describe('gex', function() {
     expect(s(foo_.on({ foo: 1, doo: 2, food: 3 }))).to.equal(
       s(foo_.on({ foo: 1, doo: 2, food: 3 }))
     )
-    done()
   })
 
-  it('object without prototype', function(done) {
+  it('object without prototype', () => {
     var obj = Object.create(null)
     obj.foo = 'bar'
     expect(s({ foo: 'bar' })).equal(s(gex('foo').on(obj)))
-    done()
   })
 
-  it('dodgy', function(done) {
+  it('dodgy', () => {
     expect(gex().on('aaa')).to.equal(gex().on('aaa'))
     expect(gex(null).on('aaa')).to.equal(gex(null).on('aaa'))
     expect(gex(NaN).on('aaa')).to.equal(gex(NaN).on('aaa'))
@@ -105,10 +100,9 @@ describe('gex', function() {
     expect(s(g.on([null]))).to.equal(s(g.on([null])))
     expect(s(g.on([NaN]))).to.equal(s(g.on([NaN])))
     expect(s(g.on([undefined]))).to.equal(s(g.on([undefined])))
-    done()
   })
 
-  it('escapes', function(done) {
+  it('escapes', () => {
     var g = gex('a**b')
     expect(g.toString()).to.equal('gex[a**b]')
     expect(g.re().toString()).to.equal('/^a\\*b$/')
@@ -124,19 +118,15 @@ describe('gex', function() {
     expect('').to.equal('')
     expect('**').to.equal('**')
     expect('*?').to.equal('*?')
-
-    done()
   })
 
-  it('newlines', function(done) {
+  it('newlines', () => {
     var g = gex('a*b')
     expect('/^a[\\s\\S]*b$/').equal('' + g.re())
     expect(g.on('a\nb')).equal(g.on('a\nb'))
-
-    done()
   })
 
-  it('zero', function(done) {
+  it('zero', () => {
     expect(gex('0').on('0')).to.equal(gex('0').on('0'))
     expect(gex('0*').on('0')).to.equal(gex('0*').on('0'))
     expect(gex('*0').on('0')).to.equal(gex('*0').on('0'))
@@ -150,16 +140,14 @@ describe('gex', function() {
     expect(gex(1).on('1')).to.equal(gex(1).on('1'))
     expect(gex(100).on('100')).to.equal(gex(100).on('100'))
     expect(gex(0).on('0')).to.equal(gex(0).on('0'))
-    done()
   })
 
-  it('noConflict', function(done) {
+  it('noConflict', () => {
     var g = gex('a').noConflict()
     expect(g.on('a')).to.equal(g.on('a'))
-    done()
   })
 
-  it('multi', function(done) {
+  it('multi', () => {
     var g = gex(['a', 'b'])
     expect(g.on('a')).to.equal('a')
     expect(g.on('b')).to.equal('b')
@@ -171,20 +159,22 @@ describe('gex', function() {
     expect(s(g.re())).to.equal('{"a*":{},"b":{}}')
 
     expect(gex(['a*', 'b*']).on('bx')).to.equal(
-      gex(['a*', 'b*']).on('bx').toString()
+      gex(['a*', 'b*'])
+        .on('bx')
+        .toString()
     )
-    expect(gex(['a*', 'b*']).on(['ax', 'zz', 'bx']).toString()).to.equal(
-      'ax,bx'
-    ) // cut: 'ax. (previous test was bork.
-    done()
+    expect(
+      gex(['a*', 'b*'])
+        .on(['ax', 'zz', 'bx'])
+        .toString()
+    ).to.equal('ax,bx') // cut: 'ax. (previous test was bork.
   })
 
-  it('inspect', function(done) {
+  it('inspect', () => {
     var g = gex('a*')
     expect(g.inspect()).to.equal('gex[a*]')
 
     g = gex(['a*', '*b'])
     expect(g.inspect()).to.equal('gex[a*,*b]')
-    done()
   })
 })
