@@ -1,7 +1,7 @@
 /* Copyright (c) 2011-2019 Richard Rodger, MIT License */
 
 // eslint-disable-next-line
-;(function() { 
+;(function() {
   'use strict'
   var root = this
   var previous_gex = root.gex
@@ -15,7 +15,7 @@
 
     function clean(gexexp) {
       var gexstr = '' + gexexp
-      if(dodgy(gexexp)) {
+      if (dodgy(gexexp)) {
         gexstr = ''
       }
       return gexstr
@@ -38,15 +38,16 @@
     }
 
     self.on = function(obj) {
-      var typeof_obj = typeof(obj)
-      if ( 'string' === typeof_obj ||
-           'number' === typeof_obj ||
-           'boolean' === typeof_obj ||
-           obj instanceof Date ||
-           obj instanceof RegExp
+      var typeof_obj = typeof obj
+      if (
+        'string' === typeof_obj ||
+        'number' === typeof_obj ||
+        'boolean' === typeof_obj ||
+        obj instanceof Date ||
+        obj instanceof RegExp
       ) {
         return match(obj) ? obj : null
-      } else if (Array.isArray(obj) ) {
+      } else if (Array.isArray(obj)) {
         var out = []
         for (var i = 0; i < obj.length; i++) {
           if (!dodgy(obj[i]) && match(obj[i])) {
@@ -93,7 +94,7 @@
         return new RegExp(gs)
       } else {
         var gexstrs = Object.keys(gexmap)
-        return 1 == gexstrs.length ? gexmap[gexstrs[0]] : {...gexmap}
+        return 1 == gexstrs.length ? gexmap[gexstrs[0]] : { ...gexmap }
       }
     }
 
