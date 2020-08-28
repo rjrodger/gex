@@ -1,5 +1,8 @@
 {
   "name": "gex",
+  "version": "2.0.0",
+  "main": "gex.js",
+  "browser": "dist/gex.min.js",
   "description": "Glob expressions for JavaScript",
   "scripts": {
     "test": "lab -v -L -P test -t 100 -I document -r console -o stdout -r html -o test/coverage.html",
@@ -10,7 +13,7 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm test",
     "repo-tag": "REPO_VERSION=`node -e \"console.log(require('./package').version)\"`; echo TAG: v$REPO_VERSION && git commit -a -m v$REPO_VERSION && git push && git tag v$REPO_VERSION && git push --tags;",
-    "repo-publish": "npm run clean && npm i && npm run prettier && npm test && npm run repo-tag && npm publish --registry http://registry.npmjs.org"
+    "repo-publish": "npm run clean && npm i && npm run prettier && npm build && npm test && npm run test-web && npm run repo-tag && npm publish --registry http://registry.npmjs.org"
   },
   "keywords": [
     "glob",
@@ -20,7 +23,6 @@
     "expression",
     "regular"
   ],
-  "version": "1.0.0",
   "homepage": "https://github.com/rjrodger/gex",
   "author": "Richard Rodger (http://richardrodger.com/)",
   "contributors": [
@@ -28,8 +30,6 @@
   ],
   "license": "MIT",
   "dependencies": {},
-  "main": "gex.js",
-  "browser": "dist/gex.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/rjrodger/gex.git"

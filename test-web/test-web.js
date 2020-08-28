@@ -5080,9 +5080,7 @@ describe('gex', function () {
   it('objects', () => {
     var foo_ = gex('foo*')
     expect(s(foo_.on({ foo: 1 }))).equal(s({ foo: 1 }))
-    expect(s(foo_.on({ foo: 1, doo: 2 }))).equal(
-      s({ foo: 1 })
-    )
+    expect(s(foo_.on({ foo: 1, doo: 2 }))).equal(s({ foo: 1 }))
     expect(s(foo_.on({ foo: 1, doo: 2, food: 3 }))).equal(
       s({ foo: 1, food: 3 })
     )
@@ -5091,7 +5089,7 @@ describe('gex', function () {
     var o1 = Object.create(o0)
     o1.foo = 1
     o1.doo = 2
-    expect(s(foo_.on(o1))).equal(s({foo:1}))
+    expect(s(foo_.on(o1))).equal(s({ foo: 1 }))
   })
 
   it('object without prototype', () => {
@@ -5173,12 +5171,8 @@ describe('gex', function () {
     expect(g.on('b')).equal('b')
     expect(s(g.re())).equal('{"a*":{},"b":{}}')
 
-    expect(gex(['a*', 'b*']).on('bx')).equal(
-      'bx'
-    )
-    expect(gex(['a*', 'b*']).on(['ax', 'zz', 'bx']).toString()).equal(
-      'ax,bx'
-    )
+    expect(gex(['a*', 'b*']).on('bx')).equal('bx')
+    expect(gex(['a*', 'b*']).on(['ax', 'zz', 'bx']).toString()).equal('ax,bx')
   })
 
   it('inspect', () => {
@@ -5192,64 +5186,62 @@ describe('gex', function () {
 })
 
 },{"..":1,"./hapi-lab-shim":38,"@hapi/code":2,"@hapi/lab":29}],38:[function(require,module,exports){
-
-
+/* Copyright (c) 2020 Richard Rodger, MIT License */
+'use strict'
 
 var tests = []
-var print = 'undefined' === typeof(document) ? console.log : function(s,nl) {
-  var out = document.querySelector('#test-results') // eslint-disable-line
-  out.innerHTML = out.innerHTML + s + (false===nl?' ':'<br>')
-}
+var print =
+  'undefined' === typeof document
+    ? console.log
+    : function (s, nl) {
+        var out = document.querySelector('#test-results') // eslint-disable-line
+        out.innerHTML = out.innerHTML + s + (false === nl ? ' ' : '<br>')
+      }
 
 var Lab = {
-  script: function(){
+  script: function () {
     return {
       it: web_it,
-      describe: web_describe
+      describe: web_describe,
     }
-  }
+  },
 }
 
-function web_it(name,opts,fn){
-  tests.push({name:name,opts:opts,fn:fn||opts})
+function web_it(name, opts, fn) {
+  tests.push({ name: name, opts: opts, fn: fn || opts })
 }
 
-function web_describe(name,testdef) {
+function web_describe(name, testdef) {
   print(name)
   testdef()
-  
+
   runtest(tests.shift())
 }
 
-
 function runtest(test) {
-  if(null == test) return;
-  
-  print(test.name,false)
+  if (null == test) return
+
+  print(test.name, false)
 
   try {
-    var res = test.fn(function(){})
-    
-    if(res) {
-      res.then(function(err){
-        if(err) {
-          print('fail '+err)
-        }
-        else {
+    var res = test.fn(function () {})
+
+    if (res) {
+      res.then(function (err) {
+        if (err) {
+          print('fail ' + err)
+        } else {
           print('pass')
         }
         runtest(tests.shift())
       })
-    }
-    else {
+    } else {
       print('pass')
     }
-  }
-  catch(err) {
-    print('fail '+err)
+  } catch (err) {
+    print('fail ' + err)
   }
 }
-
 
 module.exports = Lab
 

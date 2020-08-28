@@ -35,7 +35,7 @@ function Gex(gexspec) {
   }
 
   self.on = function (obj) {
-    if( null == obj ) {
+    if (null == obj) {
       return null
     }
 

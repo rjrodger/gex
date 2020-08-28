@@ -74,9 +74,7 @@ describe('gex', function () {
   it('objects', () => {
     var foo_ = gex('foo*')
     expect(s(foo_.on({ foo: 1 }))).equal(s({ foo: 1 }))
-    expect(s(foo_.on({ foo: 1, doo: 2 }))).equal(
-      s({ foo: 1 })
-    )
+    expect(s(foo_.on({ foo: 1, doo: 2 }))).equal(s({ foo: 1 }))
     expect(s(foo_.on({ foo: 1, doo: 2, food: 3 }))).equal(
       s({ foo: 1, food: 3 })
     )
@@ -85,7 +83,7 @@ describe('gex', function () {
     var o1 = Object.create(o0)
     o1.foo = 1
     o1.doo = 2
-    expect(s(foo_.on(o1))).equal(s({foo:1}))
+    expect(s(foo_.on(o1))).equal(s({ foo: 1 }))
   })
 
   it('object without prototype', () => {
@@ -167,12 +165,8 @@ describe('gex', function () {
     expect(g.on('b')).equal('b')
     expect(s(g.re())).equal('{"a*":{},"b":{}}')
 
-    expect(gex(['a*', 'b*']).on('bx')).equal(
-      'bx'
-    )
-    expect(gex(['a*', 'b*']).on(['ax', 'zz', 'bx']).toString()).equal(
-      'ax,bx'
-    )
+    expect(gex(['a*', 'b*']).on('bx')).equal('bx')
+    expect(gex(['a*', 'b*']).on(['ax', 'zz', 'bx']).toString()).equal('ax,bx')
   })
 
   it('inspect', () => {
