@@ -2,6 +2,8 @@
 'use strict'
 
 var Lab = require('@hapi/lab')
+Lab = null != Lab.script ? Lab : require('./hapi-lab-shim')
+
 var Code = require('@hapi/code')
 
 var lab = (exports.lab = Lab.script())

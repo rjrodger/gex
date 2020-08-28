@@ -3,6 +3,8 @@
 [![npm version][npm-badge]][npm-url]
 [![Build Status][travis-badge]][travis-url]
 [![Coverage Status][coveralls-badge]][coveralls-url]
+[![DeepScan grade](https://deepscan.io/api/teams/5016/projects/13588/branches/232094/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5016&pid=13588&bid=232094)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5def990719578771abb3/maintainability)](https://codeclimate.com/github/rjrodger/gex/maintainability)
 [![Dependency Status][david-badge]][david-url]
 
 
