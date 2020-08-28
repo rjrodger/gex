@@ -35,6 +35,10 @@ function Gex(gexspec) {
   }
 
   self.on = function (obj) {
+    if( null == obj ) {
+      return null
+    }
+
     var typeof_obj = typeof obj
     if (
       'string' === typeof_obj ||
@@ -52,7 +56,7 @@ function Gex(gexspec) {
         }
       }
       return out
-    } else if ('object' === typeof_obj) {
+    } else {
       var outobj = {}
       for (var p in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, p)) {
@@ -62,8 +66,6 @@ function Gex(gexspec) {
         }
       }
       return outobj
-    } else {
-      return null
     }
   }
 
@@ -100,7 +102,7 @@ function Gex(gexspec) {
   }
 
   self.toString = function () {
-    return desc ? desc : (desc = 'gex[' + Object.keys(gexmap) + ']')
+    return null != desc ? desc : (desc = 'gex[' + Object.keys(gexmap) + ']')
   }
 
   self.inspect = function () {
