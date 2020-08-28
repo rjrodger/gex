@@ -2,7 +2,7 @@
 
 
 var tests = []
-var print = void 0 === typeof(document) ? console.log : function(s,nl){
+var print = 'undefined' === typeof(document) ? console.log : function(s,nl) {
   var out = document.querySelector('#test-results') // eslint-disable-line
   out.innerHTML = out.innerHTML + s + (false===nl?' ':'<br>')
 }
