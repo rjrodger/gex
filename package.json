@@ -2,9 +2,9 @@
   "name": "gex",
   "description": "Glob expressions for JavaScript",
   "scripts": {
-    "test": "lab -v -L -P test -t 85",
+    "test": "lab -v -L -P test -t 85 -I document -r console -o stdout -r html -o test/coverage.html",
     "coveralls": "lab -s -P test -r lcov -I URL,URLSearchParams | coveralls",
-    "prettier": "prettier --write --no-semi --single-quote gex.js lib/*.js test/*.js",
+    "prettier": "prettier --write --no-semi --single-quote gex.js test/*.js",
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm test",
     "repo-tag": "REPO_VERSION=`node -e \"console.log(require('./package').version)\"`; echo TAG: v$REPO_VERSION && git commit -a -m v$REPO_VERSION && git push && git tag v$REPO_VERSION && git push --tags;",
@@ -37,8 +37,9 @@
     "gex.js"
   ],
   "devDependencies": {
-    "@hapi/code": "^7.0.0",
-    "@hapi/lab": "^21.0.0",
-    "coveralls": "^3.0.7"
+    "@hapi/code": "^8.0.2",
+    "@hapi/lab": "^23.0.0",
+    "coveralls": "^3.1.0",
+    "prettier": "^2.1.1"
   }
 }

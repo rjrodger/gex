@@ -1,4 +1,4 @@
-/* Copyright (c) 2013-2019 Richard Rodger, MIT License */
+/* Copyright (c) 2013-2020 Richard Rodger, MIT License */
 'use strict'
 
 var Lab = require('@hapi/lab')
@@ -14,7 +14,7 @@ function s(obj) {
   return JSON.stringify(obj)
 }
 
-describe('gex', function() {
+describe('gex', function () {
   it('happy', () => {
     var ab = gex('ab')
     expect(ab.on('ab')).to.equal('ab')
@@ -76,6 +76,12 @@ describe('gex', function() {
     expect(s(foo_.on({ foo: 1, doo: 2, food: 3 }))).to.equal(
       s(foo_.on({ foo: 1, doo: 2, food: 3 }))
     )
+
+    var o0 = { food: 3 }
+    var o1 = Object.create(o0)
+    o1.foo = 1
+    o1.doo = 2
+    expect(s(foo_.on(o1))).to.equal(s({foo:1}))
   })
 
   it('object without prototype', () => {
@@ -100,6 +106,11 @@ describe('gex', function() {
     expect(s(g.on([null]))).to.equal(s(g.on([null])))
     expect(s(g.on([NaN]))).to.equal(s(g.on([NaN])))
     expect(s(g.on([undefined]))).to.equal(s(g.on([undefined])))
+
+    expect(g.on(true)).to.equal(null)
+    expect(g.on(false)).to.equal(null)
+    expect(g.on(new Date())).to.equal(null)
+    expect(g.on(/x/)).to.equal(null)
   })
 
   it('escapes', () => {
@@ -115,9 +126,13 @@ describe('gex', function() {
     expect(g.on('a?b')).to.equal(g.on('a?b'))
     expect(g.on('a*?b')).to.equal(g.on('a*?b'))
 
-    expect('').to.equal('')
-    expect('**').to.equal('**')
-    expect('*?').to.equal('*?')
+    expect(g.esc('')).to.equal('')
+    expect(g.esc('*')).to.equal('**')
+    expect(g.esc('?')).to.equal('*?')
+    expect(g.esc('a*')).to.equal('a**')
+    expect(g.esc('a?')).to.equal('a*?')
+    expect(g.esc('a*b*c')).to.equal('a**b**c')
+    expect(g.esc('a?b?c')).to.equal('a*?b*?c')
   })
 
   it('newlines', () => {
@@ -142,11 +157,6 @@ describe('gex', function() {
     expect(gex(0).on('0')).to.equal(gex(0).on('0'))
   })
 
-  it('noConflict', () => {
-    var g = gex('a').noConflict()
-    expect(g.on('a')).to.equal(g.on('a'))
-  })
-
   it('multi', () => {
     var g = gex(['a', 'b'])
     expect(g.on('a')).to.equal('a')
@@ -159,15 +169,11 @@ describe('gex', function() {
     expect(s(g.re())).to.equal('{"a*":{},"b":{}}')
 
     expect(gex(['a*', 'b*']).on('bx')).to.equal(
-      gex(['a*', 'b*'])
-        .on('bx')
-        .toString()
+      gex(['a*', 'b*']).on('bx').toString()
     )
-    expect(
-      gex(['a*', 'b*'])
-        .on(['ax', 'zz', 'bx'])
-        .toString()
-    ).to.equal('ax,bx') // cut: 'ax. (previous test was bork.
+    expect(gex(['a*', 'b*']).on(['ax', 'zz', 'bx']).toString()).to.equal(
+      'ax,bx'
+    ) // cut: 'ax. (previous test was bork.
   })
 
   it('inspect', () => {
