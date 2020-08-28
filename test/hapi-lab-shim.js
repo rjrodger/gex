@@ -1,3 +1,5 @@
+/* Copyright (c) 2020 Richard Rodger, MIT License */
+'use strict'
 
 
 
