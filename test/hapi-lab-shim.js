@@ -49,6 +49,7 @@ function runtest(test) {
       })
     } else {
       print('pass')
+      runtest(tests.shift())
     }
   } catch (err) {
     print('fail ' + err)

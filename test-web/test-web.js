@@ -1,6 +1,6 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Gex = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 (function (global){
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).Gex=e()}}((function(){var e={exports:{}};return function(n){!function(r){"object"==typeof e.exports?e.exports=r():("undefined"!=typeof window?window:void 0!==n?n:"undefined"!=typeof self?self:this).Gex=r()}((function(){var e;function n(e){return new r(e)}function r(e){var n=this;function r(e){return null==e||Number.isNaN(e)}function t(e){var n=""+e;return r(e)&&(n=""),n}function o(e){e=""+e;for(var n=!1,r=Object.keys(u),t=0;t<r.length&&!n;t++)n=!!u[r[t]].exec(e);return n}n.on=function(e){if(null==e)return null;var n=typeof e;if("string"===n||"number"===n||"boolean"===n||e instanceof Date||e instanceof RegExp)return o(e)?e:null;if(Array.isArray(e)){for(var t=[],f=0;f<e.length;f++)!r(e[f])&&o(e[f])&&t.push(e[f]);return t}var i={};for(var u in e)Object.prototype.hasOwnProperty.call(e,u)&&o(u)&&(i[u]=e[u]);return i},n.esc=function(e){var n=t(e);return(n=n.replace(/\*/g,"**")).replace(/\?/g,"*?")},n.re=function(e){if(""===e||e)return e="^"+(e=(e=(e=(e=(e=n.escregexp(e)).replace(/\\\*/g,"[\\s\\S]*")).replace(/\\\?/g,"[\\s\\S]")).replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g,"\\*")).replace(/\[\\s\\S\]\*\[\\s\\S\]/g,"\\?"))+"$",new RegExp(e);var r=Object.keys(u);return 1==r.length?u[r[0]]:{...u}},n.escregexp=function(e){return e?(""+e).replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&"):""},n.toString=function(){return null!=f?f:f="gex["+Object.keys(u)+"]"},n.inspect=function(){return n.toString()};var f,i=Array.isArray(e)?e:[e],u={};i.forEach((function(e){e=t(e);var r=n.re(e);u[e]=r}))}return e=n,n.Gex=r,e}))}.call(this,"undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{}),e=e.exports}));
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).Gex=e()}}((function(){var e;function n(e){return new r(e)}function r(e){var n=this;function r(e){return null==e||Number.isNaN(e)}function t(e){var n=""+e;return r(e)&&(n=""),n}function o(e){e=""+e;for(var n=!1,r=Object.keys(i),t=0;t<r.length&&!n;t++)n=!!i[r[t]].exec(e);return n}n.on=function(e){if(null==e)return null;var n=typeof e;if("string"===n||"number"===n||"boolean"===n||e instanceof Date||e instanceof RegExp)return o(e)?e:null;if(Array.isArray(e)){for(var t=[],u=0;u<e.length;u++)!r(e[u])&&o(e[u])&&t.push(e[u]);return t}var f={};for(var i in e)Object.prototype.hasOwnProperty.call(e,i)&&o(i)&&(f[i]=e[i]);return f},n.esc=function(e){var n=t(e);return(n=n.replace(/\*/g,"**")).replace(/\?/g,"*?")},n.re=function(e){if(""===e||e)return e="^"+(e=(e=(e=(e=(e=n.escregexp(e)).replace(/\\\*/g,"[\\s\\S]*")).replace(/\\\?/g,"[\\s\\S]")).replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g,"\\*")).replace(/\[\\s\\S\]\*\[\\s\\S\]/g,"\\?"))+"$",new RegExp(e);var r=Object.keys(i);return 1==r.length?i[r[0]]:{...i}},n.escregexp=function(e){return e?(""+e).replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&"):""},n.toString=function(){return null!=u?u:u="gex["+Object.keys(i)+"]"},n.inspect=function(){return n.toString()};var u,f=Array.isArray(e)?e:[e],i={};f.forEach((function(e){e=t(e);var r=n.re(e);i[e]=r}))}return e=n,n.Gex=r,e}));
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
 (function (Buffer,__dirname){
@@ -730,7 +730,7 @@ const internals = {};
 
 module.exports = function () {
 
-    return new Promise(Ignore);         // $lab:coverage:ignore$
+    return new Promise(Ignore);
 };
 
 },{"./ignore":16}],7:[function(require,module,exports){
@@ -1345,8 +1345,8 @@ internals.hasOwnEnumerableProperty = function (obj, key) {
 
 internals.isSetSimpleEqual = function (obj, ref) {
 
-    for (const entry of obj) {
-        if (!ref.has(entry)) {
+    for (const entry of Set.prototype.values.call(obj)) {
+        if (!Set.prototype.has.call(ref, entry)) {
             return false;
         }
     }
@@ -1396,8 +1396,8 @@ internals.isDeepEqualObj = function (instanceType, obj, ref, options, seen) {
 
             // Check for deep equality
 
-            const ref2 = new Set(ref);
-            for (const objEntry of obj) {
+            const ref2 = new Set(Set.prototype.values.call(ref));
+            for (const objEntry of Set.prototype.values.call(obj)) {
                 if (ref2.delete(objEntry)) {
                     continue;
                 }
@@ -1422,12 +1422,12 @@ internals.isDeepEqualObj = function (instanceType, obj, ref, options, seen) {
             return false;
         }
 
-        for (const [key, value] of obj) {
-            if (value === undefined && !ref.has(key)) {
+        for (const [key, value] of Map.prototype.entries.call(obj)) {
+            if (value === undefined && !Map.prototype.has.call(ref, key)) {
                 return false;
             }
 
-            if (!isDeepEqual(value, ref.get(key), options, seen)) {
+            if (!isDeepEqual(value, Map.prototype.get.call(ref, key), options, seen)) {
                 return false;
             }
         }
@@ -2144,9 +2144,13 @@ exports.keys = function (obj, options = {}) {
 const internals = {};
 
 
-module.exports = function (timeout) {
+module.exports = function (timeout, returnValue) {
 
-    return new Promise((resolve) => setTimeout(resolve, timeout));
+    if (typeof timeout !== 'number' && timeout !== undefined) {
+        throw new TypeError('Timeout must be a number');
+    }
+
+    return new Promise((resolve) => setTimeout(resolve, timeout, returnValue));
 };
 
 },{}],28:[function(require,module,exports){
@@ -5237,6 +5241,7 @@ function runtest(test) {
       })
     } else {
       print('pass')
+      runtest(tests.shift())
     }
   } catch (err) {
     print('fail ' + err)

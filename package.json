@@ -1,13 +1,13 @@
 {
   "name": "gex",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "main": "gex.js",
   "browser": "dist/gex.min.js",
   "description": "Glob expressions for JavaScript",
   "scripts": {
     "test": "lab -v -L -P test -t 100 -I document -r console -o stdout -r html -o test/coverage.html",
     "test-web": "browserify -o test-web/test-web.js -e test/gex.test.js -s Gex -im -i assert -i @hapi/lab && open test-web/index.html",
-    "build": "browserify -o dist/gex.min.js -e gex.js -s Gex -im -i assert -p tinyify",
+    "build": "cp gex.js dist/gex.min.js && browserify -o dist/gex.min.js -e gex.js -s Gex -im -i assert -p tinyify",
     "coveralls": "lab -s -P test -r lcov -I URL,URLSearchParams | coveralls",
     "prettier": "prettier --write --no-semi --single-quote gex.js test/*.js",
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
