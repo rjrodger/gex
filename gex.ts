@@ -1,10 +1,8 @@
 /* Copyright (c) 2011-2020 Richard Rodger, MIT License */
 
-
 class Gex {
   gexmap: { [key: string]: RegExp }
   desc: string = ''
-
 
   constructor(gexspec: string | string[]) {
     this.gexmap = {}
@@ -16,17 +14,14 @@ class Gex {
     })
   }
 
-
   dodgy(obj: any) {
     return null == obj || Number.isNaN(obj)
   }
-
 
   clean(gexexp: any) {
     let gexstr = '' + gexexp
     return this.dodgy(gexexp) ? '' : gexstr
   }
-
 
   match(str: any) {
     str = '' + str
@@ -38,7 +33,6 @@ class Gex {
     }
     return hasmatch
   }
-
 
   on(obj: any) {
     if (null == obj) {
@@ -75,7 +69,6 @@ class Gex {
     }
   }
 
-
   esc(gexexp: any) {
     let gexstr = this.clean(gexexp)
     gexstr = gexstr.replace(/\*/g, '**')
@@ -83,11 +76,9 @@ class Gex {
     return gexstr
   }
 
-
   escregexp(restr: string) {
     return restr ? ('' + restr).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') : ''
   }
-
 
   re(gs: string): RegExp | any {
     if ('' === gs || gs) {
@@ -118,9 +109,7 @@ class Gex {
   inspect() {
     return this.toString()
   }
-
 }
-
 
 module.exports = gex
 

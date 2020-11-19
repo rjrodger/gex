@@ -1,6 +1,6 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Gex = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 (function (global){(function (){
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).Gex=e()}}((function(){var e;function n(e){return new r(e)}function r(e){var n=this;function r(e){return null==e||Number.isNaN(e)}function t(e){var n=""+e;return r(e)&&(n=""),n}function o(e){e=""+e;for(var n=!1,r=Object.keys(i),t=0;t<r.length&&!n;t++)n=!!i[r[t]].exec(e);return n}n.on=function(e){if(null==e)return null;var n=typeof e;if("string"===n||"number"===n||"boolean"===n||e instanceof Date||e instanceof RegExp)return o(e)?e:null;if(Array.isArray(e)){for(var t=[],u=0;u<e.length;u++)!r(e[u])&&o(e[u])&&t.push(e[u]);return t}var f={};for(var i in e)Object.prototype.hasOwnProperty.call(e,i)&&o(i)&&(f[i]=e[i]);return f},n.esc=function(e){var n=t(e);return(n=n.replace(/\*/g,"**")).replace(/\?/g,"*?")},n.re=function(e){if(""===e||e)return e="^"+(e=(e=(e=(e=(e=n.escregexp(e)).replace(/\\\*/g,"[\\s\\S]*")).replace(/\\\?/g,"[\\s\\S]")).replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g,"\\*")).replace(/\[\\s\\S\]\*\[\\s\\S\]/g,"\\?"))+"$",new RegExp(e);var r=Object.keys(i);return 1==r.length?i[r[0]]:{...i}},n.escregexp=function(e){return e?(""+e).replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&"):""},n.toString=function(){return null!=u?u:u="gex["+Object.keys(i)+"]"},n.inspect=function(){return n.toString()};var u,f=Array.isArray(e)?e:[e],i={};f.forEach((function(e){e=t(e);var r=n.re(e);i[e]=r}))}return e=n,n.Gex=r,e}));
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).Gex=e()}}((function(){var e;class t{constructor(e){this.desc="",this.gexmap={},(Array.isArray(e)?e:[e]).forEach(e=>{this.gexmap[e]=this.re(this.clean(e))})}dodgy(e){return null==e||Number.isNaN(e)}clean(e){let t=""+e;return this.dodgy(e)?"":t}match(e){e=""+e;let t=!1,r=Object.keys(this.gexmap);for(let n=0;n<r.length&&!t;n++)t=!!this.gexmap[r[n]].exec(e);return t}on(e){if(null==e)return null;let t=typeof e;if("string"===t||"number"===t||"boolean"===t||e instanceof Date||e instanceof RegExp)return this.match(e)?e:null;if(Array.isArray(e)){let t=[];for(let r=0;r<e.length;r++)!this.dodgy(e[r])&&this.match(e[r])&&t.push(e[r]);return t}{let t={};for(let r in e)Object.prototype.hasOwnProperty.call(e,r)&&this.match(r)&&(t[r]=e[r]);return t}}esc(e){let t=this.clean(e);return(t=t.replace(/\*/g,"**")).replace(/\?/g,"*?")}escregexp(e){return e?(""+e).replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&"):""}re(e){if(""===e||e)return e="^"+(e=(e=(e=(e=(e=this.escregexp(e)).replace(/\\\*/g,"[\\s\\S]*")).replace(/\\\?/g,"[\\s\\S]")).replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g,"\\*")).replace(/\[\\s\\S\]\*\[\\s\\S\]/g,"\\?"))+"$",new RegExp(e);{let e=Object.keys(this.gexmap);return 1==e.length?this.gexmap[e[0]]:{...this.gexmap}}}toString(){let e=this.desc;return""!=e?e:this.desc="gex["+Object.keys(this.gexmap)+"]"}inspect(){return this.toString()}}function r(e){return new t(e)}return e=r,r.Gex=t,e}));
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
 (function (Buffer,__dirname){(function (){
@@ -4351,7 +4351,14 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 				if (!allowMissing && !(parts[i] in value)) {
 					throw new $TypeError('base intrinsic for ' + name + ' exists, but the property is not available.');
 				}
-				value = desc ? (desc.get || desc.value) : value[parts[i]];
+				// By convention, when a data property is converted to an accessor
+				// property to emulate a data property that does not suffer from
+				// the override mistake, that accessor's getter is marked with
+				// an `originalValue` property. Here, when we detect this, we
+				// uphold the illusion by pretending to see that original data
+				// property, i.e., returning the value rather than the getter
+				// itself.
+				value = desc && 'get' in desc && !('originalValue' in desc.get) ? desc.get : value[parts[i]];
 			} else {
 				value = value[parts[i]];
 			}
@@ -4371,13 +4378,30 @@ var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = null;
+	}
+}
+
 module.exports = function callBind() {
 	return $reflectApply(bind, $call, arguments);
 };
 
-module.exports.apply = function applyBind() {
+var applyBind = function applyBind() {
 	return $reflectApply(bind, $apply, arguments);
 };
+
+if ($defineProperty) {
+	$defineProperty(module.exports, 'apply', { value: applyBind });
+} else {
+	module.exports.apply = applyBind;
+}
 
 },{"../GetIntrinsic":33,"function-bind":39}],35:[function(require,module,exports){
 'use strict';
