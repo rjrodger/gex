@@ -16,36 +16,36 @@ Match glob expressions using * and ? against any JavaScript data type.
 The character * means match anything of any length, the character ? means match exactly one of any character, 
 and all other characters match themselves.
 
-    var gex = require('gex')
+    const { Gex } = require('gex')
 
-    gex('a*').on( 'abc' ) // returns 'abc'
-    gex('a*c').on( 'abbbc' ) // returns 'abbbc'
-    gex('a?c').on( 'abc' ) // returns 'abc'
+    Gex('a*').on( 'abc' ) // returns 'abc'
+    Gex('a*c').on( 'abbbc' ) // returns 'abbbc'
+    Gex('a?c').on( 'abc' ) // returns 'abc'
 
 You can also match against objects and arrays:
 
-    gex('a*').on( ['ab','zz','ac'] ) // returns ['ab','ac']
-    gex('a*').on( {ab:1,zz:2,ac:3} ) // returns {ab:1,ac:3}
+    Gex('a*').on( ['ab','zz','ac'] ) // returns ['ab','ac']
+    Gex('a*').on( {ab:1,zz:2,ac:3} ) // returns {ab:1,ac:3}
 
 And also match against multiple globs:
 
-    gex(['a*','b*']).on( 'bx' ) // returns 'bx'
-    gex(['a*','b*']).on( ['ax','zz','bx'] ) // returns ['ax','bx']
+    Gex(['a*','b*']).on( 'bx' ) // returns 'bx'
+    Gex(['a*','b*']).on( ['ax','zz','bx'] ) // returns ['ax','bx']
 
 
 One of the most useful things you can do with this library is quick
 assertions in unit tests. For example if your objects contain dates,
 randomly generated unique identifiers, or other data irrelevant for
-testing, `gex` can help you ignore them when you use `JSON.stringify`:
+testing, `Gex` can help you ignore them when you use `JSON.stringify`:
 
     var entity = {created: new Date().getTime(), name:'foo' }
-    assert.ok( gex('{"created":*,"name":"foo"}').on( JSON.stringify(entity) ) )
+    assert.ok( Gex('{"created":*,"name":"foo"}').on( JSON.stringify(entity) ) )
 
 If you need to use globbing on files, here's how apply a glob to a list of files in a folder:
 
     var fs = require('fs')
     fs.readdir('.',function(err,files){ 
-      var pngs = gex('*.png').on(files) 
+      var pngs = Gex('*.png').on(files) 
     })
 
 And that's it!
@@ -57,7 +57,7 @@ And that's it!
 
 And in your code:
 
-    var gex = require('gex')
+    const { Gex } = require('gex')
 
 Or clone the git repository:
     git clone git://github.com/rjrodger/gex.git
@@ -68,7 +68,7 @@ This library depends on the excellent underscore module: [underscore](https://gi
 
 ## Usage
 
-The `gex` object is a function that takes a single argument, the glob
+The `Gex` object is a function that takes a single argument, the glob
 expression.  This returns a `Gex` object that has only one function
 itself: `on`. The `on` function accepts any JavaScript data type, and operates as follows:
 
