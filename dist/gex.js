@@ -1,5 +1,8 @@
+"use strict";
 /* Copyright (c) 2011-2020 Richard Rodger, MIT License */
-class Gex {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Gex = void 0;
+class Gexer {
     constructor(gexspec) {
         this.desc = '';
         this.gexmap = {};
@@ -85,15 +88,14 @@ class Gex {
     }
     toString() {
         let d = this.desc;
-        return '' != d ? d : (this.desc = 'gex[' + Object.keys(this.gexmap) + ']');
+        return '' != d ? d : (this.desc = 'Gex[' + Object.keys(this.gexmap) + ']');
     }
     inspect() {
         return this.toString();
     }
 }
-module.exports = gex;
-function gex(gexspec) {
-    return new Gex(gexspec);
+function Gex(gexspec) {
+    return new Gexer(gexspec);
 }
-gex.Gex = Gex;
+exports.Gex = Gex;
 //# sourceMappingURL=gex.js.map

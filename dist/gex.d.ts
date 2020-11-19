@@ -1,4 +1,4 @@
-declare class Gex {
+declare class Gexer {
     gexmap: {
         [key: string]: RegExp;
     };
@@ -14,7 +14,5 @@ declare class Gex {
     toString(): string;
     inspect(): string;
 }
-declare function gex(gexspec: string | string[]): Gex;
-declare namespace gex {
-    var Gex: typeof globalThis.Gex;
-}
+declare function Gex(gexspec: string | string[]): Gexer;
+export { Gex };

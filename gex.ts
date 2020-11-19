@@ -1,6 +1,6 @@
 /* Copyright (c) 2011-2020 Richard Rodger, MIT License */
 
-class Gex {
+class Gexer {
   gexmap: { [key: string]: RegExp }
   desc: string = ''
 
@@ -103,7 +103,7 @@ class Gex {
 
   toString() {
     let d = this.desc
-    return '' != d ? d : (this.desc = 'gex[' + Object.keys(this.gexmap) + ']')
+    return '' != d ? d : (this.desc = 'Gex[' + Object.keys(this.gexmap) + ']')
   }
 
   inspect() {
@@ -111,10 +111,8 @@ class Gex {
   }
 }
 
-module.exports = gex
-
-function gex(gexspec: string | string[]): Gex {
-  return new Gex(gexspec)
+function Gex(gexspec: string | string[]): Gexer {
+  return new Gexer(gexspec)
 }
 
-gex.Gex = Gex
+export { Gex }

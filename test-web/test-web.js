@@ -1,6 +1,6 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Gex = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 (function (global){(function (){
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).Gex=e()}}((function(){var e;class t{constructor(e){this.desc="",this.gexmap={},(Array.isArray(e)?e:[e]).forEach(e=>{this.gexmap[e]=this.re(this.clean(e))})}dodgy(e){return null==e||Number.isNaN(e)}clean(e){let t=""+e;return this.dodgy(e)?"":t}match(e){e=""+e;let t=!1,r=Object.keys(this.gexmap);for(let n=0;n<r.length&&!t;n++)t=!!this.gexmap[r[n]].exec(e);return t}on(e){if(null==e)return null;let t=typeof e;if("string"===t||"number"===t||"boolean"===t||e instanceof Date||e instanceof RegExp)return this.match(e)?e:null;if(Array.isArray(e)){let t=[];for(let r=0;r<e.length;r++)!this.dodgy(e[r])&&this.match(e[r])&&t.push(e[r]);return t}{let t={};for(let r in e)Object.prototype.hasOwnProperty.call(e,r)&&this.match(r)&&(t[r]=e[r]);return t}}esc(e){let t=this.clean(e);return(t=t.replace(/\*/g,"**")).replace(/\?/g,"*?")}escregexp(e){return e?(""+e).replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&"):""}re(e){if(""===e||e)return e="^"+(e=(e=(e=(e=(e=this.escregexp(e)).replace(/\\\*/g,"[\\s\\S]*")).replace(/\\\?/g,"[\\s\\S]")).replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g,"\\*")).replace(/\[\\s\\S\]\*\[\\s\\S\]/g,"\\?"))+"$",new RegExp(e);{let e=Object.keys(this.gexmap);return 1==e.length?this.gexmap[e[0]]:{...this.gexmap}}}toString(){let e=this.desc;return""!=e?e:this.desc="gex["+Object.keys(this.gexmap)+"]"}inspect(){return this.toString()}}function r(e){return new t(e)}return e=r,r.Gex=t,e}));
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).Gex=e()}}((function(){var e={};Object.defineProperty(e,"__esModule",{value:!0}),e.Gex=void 0;class t{constructor(e){this.desc="",this.gexmap={},(Array.isArray(e)?e:[e]).forEach(e=>{this.gexmap[e]=this.re(this.clean(e))})}dodgy(e){return null==e||Number.isNaN(e)}clean(e){let t=""+e;return this.dodgy(e)?"":t}match(e){e=""+e;let t=!1,r=Object.keys(this.gexmap);for(let n=0;n<r.length&&!t;n++)t=!!this.gexmap[r[n]].exec(e);return t}on(e){if(null==e)return null;let t=typeof e;if("string"===t||"number"===t||"boolean"===t||e instanceof Date||e instanceof RegExp)return this.match(e)?e:null;if(Array.isArray(e)){let t=[];for(let r=0;r<e.length;r++)!this.dodgy(e[r])&&this.match(e[r])&&t.push(e[r]);return t}{let t={};for(let r in e)Object.prototype.hasOwnProperty.call(e,r)&&this.match(r)&&(t[r]=e[r]);return t}}esc(e){let t=this.clean(e);return(t=t.replace(/\*/g,"**")).replace(/\?/g,"*?")}escregexp(e){return e?(""+e).replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&"):""}re(e){if(""===e||e)return e="^"+(e=(e=(e=(e=(e=this.escregexp(e)).replace(/\\\*/g,"[\\s\\S]*")).replace(/\\\?/g,"[\\s\\S]")).replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g,"\\*")).replace(/\[\\s\\S\]\*\[\\s\\S\]/g,"\\?"))+"$",new RegExp(e);{let e=Object.keys(this.gexmap);return 1==e.length?this.gexmap[e[0]]:{...this.gexmap}}}toString(){let e=this.desc;return""!=e?e:this.desc="Gex["+Object.keys(this.gexmap)+"]"}inspect(){return this.toString()}}return e.Gex=function(e){return new t(e)},e}));
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
 (function (Buffer,__dirname){(function (){
@@ -6173,15 +6173,15 @@ var lab = (exports.lab = Lab.script())
 var describe = lab.describe
 var it = lab.it
 var expect = Code.expect
-var gex = require('..')
+var { Gex } = require('..')
 
 function s(obj) {
   return JSON.stringify(obj)
 }
 
-describe('gex', function () {
+describe('Gex', function () {
   it('happy', () => {
-    var ab = gex('ab')
+    var ab = Gex('ab')
     expect(ab.on('ab')).equal('ab')
     expect(ab.on('a')).equal(null)
     expect(ab.on('b')).equal(null)
@@ -6190,7 +6190,7 @@ describe('gex', function () {
     expect(ab.on('cab')).equal(null)
     expect(ab.on('cabc')).equal(null)
 
-    var a_b = gex('a*b')
+    var a_b = Gex('a*b')
     expect(a_b.on('acb')).equal('acb')
     expect(a_b.on('adb')).equal('adb')
     expect(a_b.on('aab')).equal('aab')
@@ -6203,7 +6203,7 @@ describe('gex', function () {
     expect(a_b.on('ac')).equal(null)
     expect(a_b.on('a')).equal(null)
 
-    var a$b = gex('a?b')
+    var a$b = Gex('a?b')
     expect(a$b.on('acb')).equal('acb')
     expect(a$b.on('adb')).equal('adb')
     expect(a$b.on('aab')).equal('aab')
@@ -6224,7 +6224,7 @@ describe('gex', function () {
   })
 
   it('arrays', () => {
-    var a_ = gex('a*') // maybe: to deep equal
+    var a_ = Gex('a*') // maybe: to deep equal
     expect(s(a_.on(['ab', 'ac']))).equal(s(['ab', 'ac']))
     expect(s(a_.on(['ab', 'dd', 'ac']))).equal(s(['ab', 'ac']))
     expect(s(a_.on(['ab', 'dd', 'ee']))).equal(s(['ab']))
@@ -6235,7 +6235,7 @@ describe('gex', function () {
   })
 
   it('objects', () => {
-    var foo_ = gex('foo*')
+    var foo_ = Gex('foo*')
     expect(s(foo_.on({ foo: 1 }))).equal(s({ foo: 1 }))
     expect(s(foo_.on({ foo: 1, doo: 2 }))).equal(s({ foo: 1 }))
     expect(s(foo_.on({ foo: 1, doo: 2, food: 3 }))).equal(
@@ -6252,16 +6252,16 @@ describe('gex', function () {
   it('object without prototype', () => {
     var obj = Object.create(null)
     obj.foo = 'bar'
-    expect(s({ foo: 'bar' })).equal(s(gex('foo').on(obj)))
+    expect(s({ foo: 'bar' })).equal(s(Gex('foo').on(obj)))
   })
 
   it('dodgy', () => {
-    expect(gex().on('aaa')).equal(null)
-    expect(gex(null).on('aaa')).equal(null)
-    expect(gex(NaN).on('aaa')).equal(null)
-    expect(gex(undefined).on('aaa')).equal(null)
+    expect(Gex().on('aaa')).equal(null)
+    expect(Gex(null).on('aaa')).equal(null)
+    expect(Gex(NaN).on('aaa')).equal(null)
+    expect(Gex(undefined).on('aaa')).equal(null)
 
-    var g = gex('g')
+    var g = Gex('g')
     expect(g.on()).equal(null)
     expect(g.on(null)).equal(null)
     expect(g.on(NaN)).equal(null)
@@ -6274,14 +6274,14 @@ describe('gex', function () {
   })
 
   it('escapes', () => {
-    var g = gex('a**b')
-    expect(g.toString()).equal('gex[a**b]')
+    var g = Gex('a**b')
+    expect(g.toString()).equal('Gex[a**b]')
     expect(g.re().toString()).equal('/^a\\*b$/')
     expect(g.on('a*b')).equal('a*b')
     expect(g.on('a**b')).equal(null) // not a literal 'a*b'
 
-    g = gex('a*?b')
-    expect(g.toString()).equal('gex[a*?b]')
+    g = Gex('a*?b')
+    expect(g.toString()).equal('Gex[a*?b]')
     expect(g.re().toString()).equal('/^a\\?b$/')
     expect(g.on('a?b')).equal('a?b')
     expect(g.on('a*?b')).equal(null) // not a literal 'a?b'
@@ -6296,49 +6296,49 @@ describe('gex', function () {
   })
 
   it('newlines', () => {
-    var g = gex('a*b')
+    var g = Gex('a*b')
     expect('/^a[\\s\\S]*b$/').equal('' + g.re())
     expect(g.on('a\nb')).equal('a\nb')
   })
 
   it('zero', () => {
-    expect(gex('0').on('0')).equal('0')
-    expect(gex('0*').on('0')).equal('0')
-    expect(gex('*0').on('0')).equal('0')
-    expect(gex('*0*').on('0')).equal('0')
+    expect(Gex('0').on('0')).equal('0')
+    expect(Gex('0*').on('0')).equal('0')
+    expect(Gex('*0').on('0')).equal('0')
+    expect(Gex('*0*').on('0')).equal('0')
 
-    expect(gex(['0']).on('0')).equal('0')
-    expect(gex(['0*']).on('0')).equal('0')
-    expect(gex(['*0']).on('0')).equal('0')
-    expect(gex(['*0*']).on('0')).equal('0')
+    expect(Gex(['0']).on('0')).equal('0')
+    expect(Gex(['0*']).on('0')).equal('0')
+    expect(Gex(['*0']).on('0')).equal('0')
+    expect(Gex(['*0*']).on('0')).equal('0')
 
-    expect(gex(1).on('1')).equal('1')
-    expect(gex(100).on('100')).equal('100')
-    expect(gex(0).on('0')).equal('0')
+    expect(Gex(1).on('1')).equal('1')
+    expect(Gex(100).on('100')).equal('100')
+    expect(Gex(0).on('0')).equal('0')
   })
 
   it('multi', () => {
-    var g = gex(['a', 'b'])
+    var g = Gex(['a', 'b'])
     expect(g.on('a')).equal('a')
     expect(g.on('b')).equal('b')
     expect(s(g.re())).equal('{"a":{},"b":{}}')
 
-    g = gex(['a*', 'b'])
+    g = Gex(['a*', 'b'])
     expect(g.on('ax')).equal('ax')
     expect(g.on('b')).equal('b')
     expect(s(g.re())).equal('{"a*":{},"b":{}}')
 
-    expect(gex(['a*', 'b*']).on('bx')).equal('bx')
-    expect(gex(['a*', 'b*']).on(['ax', 'zz', 'bx']).toString()).equal('ax,bx')
+    expect(Gex(['a*', 'b*']).on('bx')).equal('bx')
+    expect(Gex(['a*', 'b*']).on(['ax', 'zz', 'bx']).toString()).equal('ax,bx')
   })
 
   it('inspect', () => {
-    var g = gex('a*')
-    expect(g.toString()).equal('gex[a*]')
-    expect(g.inspect()).equal('gex[a*]')
+    var g = Gex('a*')
+    expect(g.toString()).equal('Gex[a*]')
+    expect(g.inspect()).equal('Gex[a*]')
 
-    g = gex(['a*', '*b'])
-    expect(g.inspect()).equal('gex[a*,*b]')
+    g = Gex(['a*', '*b'])
+    expect(g.inspect()).equal('Gex[a*,*b]')
   })
 })
 
