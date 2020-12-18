@@ -8,7 +8,7 @@
   "scripts": {
     "watch": "tsc -w -d",
     "build": "tsc -d && cp dist/gex.js dist/gex.min.js && browserify -o dist/gex.min.js -e dist/gex.js -s Gex -im -i assert -p tinyify",
-    "test": "lab -v -L -P test -t 90 --sourcemaps --transform node_modules/lab-transform-typescript -r console -o stdout -r html -o test/coverage.html",
+    "test": "lab -v -L -P test -t 90 --sourcemaps --transform node_modules/lab-transform-typescript -r console -o stdout -r html -o test/coverage.html -r lcov -o test/lcov.info",
     "test-web": "browserify -o test-web/test-web.js -e test/gex.test.js -s Gex -im -i assert -i @hapi/lab && open test-web/index.html",
     "prettier": "prettier --write --no-semi --single-quote gex.ts test/*.js",
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
