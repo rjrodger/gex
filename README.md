@@ -1,11 +1,12 @@
 # gex
 
-[![npm version][npm-badge]][npm-url]
-[![Build Status][travis-badge]][travis-url]
-[![Coverage Status][coveralls-badge]][coveralls-url]
+[![npm version](https://badge.fury.io/js/gex.svg)](https://badge.fury.io/js/gex)
+[![Build](https://github.com/rjrodger/gex/workflows/build/badge.svg)](https://github.com/rjrodger/gex/actions?query=workflow%3Abuild)
+[![Coverage Status](https://coveralls.io/repos/github/rjrodger/gex/badge.svg?branch=main)](https://coveralls.io/github/rjrodger/gex?branch=main)
 [![DeepScan grade](https://deepscan.io/api/teams/5016/projects/13588/branches/232094/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5016&pid=13588&bid=232094)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5def990719578771abb3/maintainability)](https://codeclimate.com/github/rjrodger/gex/maintainability)
-[![Dependency Status][david-badge]][david-url]
+[![Dependency Status](https://david-dm.org/rjrodger/gex.svg)](https://david-dm.org/rjrodger/gex)
+
 
 
 ## Glob expressions for JavaScript
@@ -85,12 +86,10 @@ This module works on both Node.js and browsers.
 
 
 
-[npm-badge]: https://badge.fury.io/js/gex.svg
-[npm-url]: https://badge.fury.io/js/gex
-[travis-badge]: https://api.travis-ci.org/rjrodger/gex.svg?branch=master
-[travis-url]: https://travis-ci.org/rjrodger/gex?branch=master
-[coveralls-badge]:https://coveralls.io/repos/rjrodger/gex/badge.svg?branch=master&service=github
-[coveralls-url]: https://coveralls.io/github/rjrodger/gex?branch=master
-[david-badge]: https://david-dm.org/rjrodger/gex.svg
-[david-url]: https://david-dm.org/rjrodger/gex
+## License
+Copyright (c) 2010-2020, Richard Rodger and other contributors.
+Licensed under [MIT][].
+
+[MIT]: ./LICENSE
+
 
