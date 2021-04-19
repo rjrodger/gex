@@ -108,6 +108,8 @@ describe('Gex', function () {
     expect(g.on(false)).equal(null)
     expect(g.on(new Date())).equal(null)
     expect(g.on(/x/)).equal(null)
+
+    expect(g.on('')).equal(null)
   })
 
   it('escapes', () => {
@@ -176,5 +178,15 @@ describe('Gex', function () {
 
     g = Gex(['a*', '*b'])
     expect(g.inspect()).equal('Gex[a*,*b]')
+  })
+
+
+  it('funky', () => {
+    expect(Gex('').on('a')).equal(null)
+    expect(Gex().on('a')).equal(null)
+    expect(Gex(null).on('a')).equal(null)
+    expect(Gex(undefined).on('a')).equal(null)
+    expect(Gex(NaN).on('a')).equal(null)
+    expect(Gex(/a/).on('a')).equal(null)
   })
 })

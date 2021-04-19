@@ -6,10 +6,12 @@ class Gexer {
     constructor(gexspec) {
         this.desc = '';
         this.gexmap = {};
-        let gexstrs = Array.isArray(gexspec) ? gexspec : [gexspec];
-        gexstrs.forEach((str) => {
-            this.gexmap[str] = this.re(this.clean(str));
-        });
+        if (null != gexspec) {
+            let gexstrs = Array.isArray(gexspec) ? gexspec : [gexspec];
+            gexstrs.forEach((str) => {
+                this.gexmap[str] = this.re(this.clean(str));
+            });
+        }
     }
     dodgy(obj) {
         return null == obj || Number.isNaN(obj);

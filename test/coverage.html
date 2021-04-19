@@ -546,8 +546,8 @@
       <div class="stats high">
           <div class="failures">0</div>
           <div class="skipped">0</div>
-          <div class="test-count">10</div>
-          <div class="duration">41</div>
+          <div class="test-count">11</div>
+          <div class="duration">48</div>
       </div>
       <div id="filters">
           <input type="checkbox" checked="" onchange="filter(this)" value="success" id="show-success">
@@ -572,14 +572,14 @@
               <td class="test-title">Gex happy
                   
               </td>
-              <td class="test-duration">13</td>
+              <td class="test-duration">14</td>
           </tr>
           <tr class="show Gex success">
               <td class="test-id">2</td>
               <td class="test-title">Gex arrays
                   
               </td>
-              <td class="test-duration">2</td>
+              <td class="test-duration">3</td>
           </tr>
           <tr class="show Gex success">
               <td class="test-id">3</td>
@@ -600,21 +600,21 @@
               <td class="test-title">Gex dodgy
                   
               </td>
-              <td class="test-duration">4</td>
+              <td class="test-duration">5</td>
           </tr>
           <tr class="show Gex success">
               <td class="test-id">6</td>
               <td class="test-title">Gex escapes
                   
               </td>
-              <td class="test-duration">3</td>
+              <td class="test-duration">4</td>
           </tr>
           <tr class="show Gex success">
               <td class="test-id">7</td>
               <td class="test-title">Gex newlines
                   
               </td>
-              <td class="test-duration">0</td>
+              <td class="test-duration">1</td>
           </tr>
           <tr class="show Gex success">
               <td class="test-id">8</td>
@@ -637,6 +637,13 @@
               </td>
               <td class="test-duration">1</td>
           </tr>
+          <tr class="show Gex success">
+              <td class="test-id">11</td>
+              <td class="test-title">Gex funky
+                  
+              </td>
+              <td class="test-duration">2</td>
+          </tr>
           </tbody>
       </table>
     
@@ -644,8 +651,8 @@
         <h1>Code Coverage Report</h1>
         <div class="stats high">
             <div class="percentage">100%</div>
-            <div class="sloc">97</div>
-            <div class="hits">97</div>
+            <div class="sloc">99</div>
+            <div class="hits">99</div>
             <div class="misses">0</div>
         </div>
         <div id="filters">
@@ -657,8 +664,8 @@
                 <h2 id="dist/gex.js">dist/gex.js </h2>
                 <div class="stats high">
                     <div class="percentage">100%</div>
-                    <div class="sloc">97</div>
-                    <div class="hits">97</div>
+                    <div class="sloc">99</div>
+                    <div class="hits">99</div>
                     <div class="misses">0</div>
                 </div>
                 <table>
@@ -717,563 +724,575 @@
                         </tr>            <tr id="dist/gex.js__8" class="hit">
                           <td class="line" data-tooltip>8</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>31</td>
+                          <td class="hits" data-tooltip>37</td>
                           <td class="source">        this.gexmap &#x3D; {};</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__8">8</a></td>
                         </tr>            <tr id="dist/gex.js__9" class="hit">
                           <td class="line" data-tooltip>9</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>31</td>
-                          <td class="source">        let gexstrs &#x3D; Array.isArray(gexspec) ? gexspec : [gexspec];</td>
+                          <td class="hits" data-tooltip>37</td>
+                          <td class="source">        if (null !&#x3D; gexspec) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__10">10</a></td>
                         </tr>            <tr id="dist/gex.js__10" class="hit">
                           <td class="line" data-tooltip>10</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>31</td>
-                          <td class="source">        gexstrs.forEach((str) &#x3D;&gt; {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__12">12</a></td>
+                          <td class="source">            let gexstrs &#x3D; Array.isArray(gexspec) ? gexspec : [gexspec];</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__11">11</a></td>
                         </tr>            <tr id="dist/gex.js__11" class="hit">
                           <td class="line" data-tooltip>11</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">            this.gexmap[str] &#x3D; this.re(this.clean(str));</td>
+                          <td class="hits" data-tooltip>31</td>
+                          <td class="source">            gexstrs.forEach((str) &#x3D;&gt; {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__13">13</a></td>
                         </tr>            <tr id="dist/gex.js__12" class="hit">
                           <td class="line" data-tooltip>12</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        });</td>
+                          <td class="source">                this.gexmap[str] &#x3D; this.re(this.clean(str));</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__14">14</a></td>
                         </tr>            <tr id="dist/gex.js__13" class="hit">
                           <td class="line" data-tooltip>13</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
+                          <td class="source">            });</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__15">15</a></td>
                         </tr>            <tr id="dist/gex.js__14" class="hit">
                           <td class="line" data-tooltip>14</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    dodgy(obj) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__17">17</a></td>
+                          <td class="source">        }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__16">16</a></td>
                         </tr>            <tr id="dist/gex.js__15" class="hit">
                           <td class="line" data-tooltip>15</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        return null &#x3D;&#x3D; obj || Number.isNaN(obj);</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__18">18</a></td>
+                          <td class="source">    }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__17">17</a></td>
                         </tr>            <tr id="dist/gex.js__16" class="hit">
                           <td class="line" data-tooltip>16</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
+                          <td class="source">    dodgy(obj) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__19">19</a></td>
                         </tr>            <tr id="dist/gex.js__17" class="hit">
                           <td class="line" data-tooltip>17</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    clean(gexexp) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__21">21</a></td>
+                          <td class="source">        return null &#x3D;&#x3D; obj || Number.isNaN(obj);</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__20">20</a></td>
                         </tr>            <tr id="dist/gex.js__18" class="hit">
                           <td class="line" data-tooltip>18</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        let gexstr &#x3D; &#x27;&#x27; + gexexp;</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__22">22</a></td>
+                          <td class="source">    }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__21">21</a></td>
                         </tr>            <tr id="dist/gex.js__19" class="hit">
                           <td class="line" data-tooltip>19</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>43</td>
-                          <td class="source">        return this.dodgy(gexexp) ? &#x27;&#x27; : gexstr;</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    clean(gexexp) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__23">23</a></td>
                         </tr>            <tr id="dist/gex.js__20" class="hit">
                           <td class="line" data-tooltip>20</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
+                          <td class="source">        let gexstr &#x3D; &#x27;&#x27; + gexexp;</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__24">24</a></td>
                         </tr>            <tr id="dist/gex.js__21" class="hit">
                           <td class="line" data-tooltip>21</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    match(str) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__26">26</a></td>
+                          <td class="hits" data-tooltip>43</td>
+                          <td class="source">        return this.dodgy(gexexp) ? &#x27;&#x27; : gexstr;</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__25">25</a></td>
                         </tr>            <tr id="dist/gex.js__22" class="hit">
                           <td class="line" data-tooltip>22</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        str &#x3D; &#x27;&#x27; + str;</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__27">27</a></td>
+                          <td class="source">    }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__26">26</a></td>
                         </tr>            <tr id="dist/gex.js__23" class="hit">
                           <td class="line" data-tooltip>23</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>88</td>
-                          <td class="source">        let hasmatch &#x3D; false;</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    match(str) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__28">28</a></td>
                         </tr>            <tr id="dist/gex.js__24" class="hit">
                           <td class="line" data-tooltip>24</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>88</td>
-                          <td class="source">        let gexstrs &#x3D; Object.keys(this.gexmap);</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        str &#x3D; &#x27;&#x27; + str;</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__29">29</a></td>
                         </tr>            <tr id="dist/gex.js__25" class="hit">
                           <td class="line" data-tooltip>25</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>88</td>
-                          <td class="source">        for (let i &#x3D; 0; i &lt; gexstrs.length &amp;&amp; !hasmatch; i++) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__31">31</a></td>
+                          <td class="hits" data-tooltip>95</td>
+                          <td class="source">        let hasmatch &#x3D; false;</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__30">30</a></td>
                         </tr>            <tr id="dist/gex.js__26" class="hit">
                           <td class="line" data-tooltip>26</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>93</td>
-                          <td class="source">            hasmatch &#x3D; !!this.gexmap[gexstrs[i]].exec(str);</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__32">32</a></td>
+                          <td class="hits" data-tooltip>95</td>
+                          <td class="source">        let gexstrs &#x3D; Object.keys(this.gexmap);</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__31">31</a></td>
                         </tr>            <tr id="dist/gex.js__27" class="hit">
                           <td class="line" data-tooltip>27</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        }</td>
+                          <td class="hits" data-tooltip>95</td>
+                          <td class="source">        for (let i &#x3D; 0; i &lt; gexstrs.length &amp;&amp; !hasmatch; i++) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__33">33</a></td>
                         </tr>            <tr id="dist/gex.js__28" class="hit">
                           <td class="line" data-tooltip>28</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>88</td>
-                          <td class="source">        return hasmatch;</td>
+                          <td class="hits" data-tooltip>94</td>
+                          <td class="source">            hasmatch &#x3D; !!this.gexmap[gexstrs[i]].exec(str);</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__34">34</a></td>
                         </tr>            <tr id="dist/gex.js__29" class="hit">
                           <td class="line" data-tooltip>29</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
+                          <td class="source">        }</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__35">35</a></td>
                         </tr>            <tr id="dist/gex.js__30" class="hit">
                           <td class="line" data-tooltip>30</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    on(obj) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__37">37</a></td>
+                          <td class="hits" data-tooltip>95</td>
+                          <td class="source">        return hasmatch;</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__36">36</a></td>
                         </tr>            <tr id="dist/gex.js__31" class="hit">
                           <td class="line" data-tooltip>31</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        if (null &#x3D;&#x3D; obj) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__38">38</a></td>
+                          <td class="source">    }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__37">37</a></td>
                         </tr>            <tr id="dist/gex.js__32" class="hit">
                           <td class="line" data-tooltip>32</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>3</td>
-                          <td class="source">            return null;</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    on(obj) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__39">39</a></td>
                         </tr>            <tr id="dist/gex.js__33" class="hit">
                           <td class="line" data-tooltip>33</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        }</td>
+                          <td class="source">        if (null &#x3D;&#x3D; obj) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__40">40</a></td>
                         </tr>            <tr id="dist/gex.js__34" class="hit">
                           <td class="line" data-tooltip>34</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>75</td>
-                          <td class="source">        let typeof_obj &#x3D; typeof obj;</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__42">42</a></td>
+                          <td class="hits" data-tooltip>3</td>
+                          <td class="source">            return null;</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__41">41</a></td>
                         </tr>            <tr id="dist/gex.js__35" class="hit">
                           <td class="line" data-tooltip>35</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>75</td>
-                          <td class="source">        if (&#x27;string&#x27; &#x3D;&#x3D;&#x3D; typeof_obj ||</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__44">44</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__42">42</a></td>
                         </tr>            <tr id="dist/gex.js__36" class="hit">
                           <td class="line" data-tooltip>36</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">            &#x27;number&#x27; &#x3D;&#x3D;&#x3D; typeof_obj ||</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__45">45</a></td>
+                          <td class="hits" data-tooltip>82</td>
+                          <td class="source">        let typeof_obj &#x3D; typeof obj;</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__44">44</a></td>
                         </tr>            <tr id="dist/gex.js__37" class="hit">
                           <td class="line" data-tooltip>37</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">            &#x27;boolean&#x27; &#x3D;&#x3D;&#x3D; typeof_obj ||</td>
+                          <td class="hits" data-tooltip>82</td>
+                          <td class="source">        if (&#x27;string&#x27; &#x3D;&#x3D;&#x3D; typeof_obj ||</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__46">46</a></td>
                         </tr>            <tr id="dist/gex.js__38" class="hit">
                           <td class="line" data-tooltip>38</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            obj instanceof Date ||</td>
+                          <td class="source">            &#x27;number&#x27; &#x3D;&#x3D;&#x3D; typeof_obj ||</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__47">47</a></td>
                         </tr>            <tr id="dist/gex.js__39" class="hit">
                           <td class="line" data-tooltip>39</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            obj instanceof RegExp) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__49">49</a></td>
+                          <td class="source">            &#x27;boolean&#x27; &#x3D;&#x3D;&#x3D; typeof_obj ||</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__48">48</a></td>
                         </tr>            <tr id="dist/gex.js__40" class="hit">
                           <td class="line" data-tooltip>40</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>62</td>
-                          <td class="source">            return this.match(obj) ? obj : null;</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__50">50</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            obj instanceof Date ||</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__49">49</a></td>
                         </tr>            <tr id="dist/gex.js__41" class="hit">
                           <td class="line" data-tooltip>41</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        }</td>
+                          <td class="source">            obj instanceof RegExp) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__51">51</a></td>
                         </tr>            <tr id="dist/gex.js__42" class="hit">
                           <td class="line" data-tooltip>42</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>13</td>
-                          <td class="source">        else if (Array.isArray(obj)) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__51">51</a></td>
+                          <td class="hits" data-tooltip>69</td>
+                          <td class="source">            return this.match(obj) ? obj : null;</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__52">52</a></td>
                         </tr>            <tr id="dist/gex.js__43" class="hit">
                           <td class="line" data-tooltip>43</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>8</td>
-                          <td class="source">            let out &#x3D; [];</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__52">52</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__53">53</a></td>
                         </tr>            <tr id="dist/gex.js__44" class="hit">
                           <td class="line" data-tooltip>44</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>8</td>
-                          <td class="source">            for (let i &#x3D; 0; i &lt; obj.length; i++) {</td>
+                          <td class="hits" data-tooltip>13</td>
+                          <td class="source">        else if (Array.isArray(obj)) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__53">53</a></td>
                         </tr>            <tr id="dist/gex.js__45" class="hit">
                           <td class="line" data-tooltip>45</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>21</td>
-                          <td class="source">                if (!this.dodgy(obj[i]) &amp;&amp; this.match(obj[i])) {</td>
+                          <td class="hits" data-tooltip>8</td>
+                          <td class="source">            let out &#x3D; [];</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__54">54</a></td>
                         </tr>            <tr id="dist/gex.js__46" class="hit">
                           <td class="line" data-tooltip>46</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>8</td>
-                          <td class="source">                    out.push(obj[i]);</td>
+                          <td class="source">            for (let i &#x3D; 0; i &lt; obj.length; i++) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__55">55</a></td>
                         </tr>            <tr id="dist/gex.js__47" class="hit">
                           <td class="line" data-tooltip>47</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">                }</td>
+                          <td class="hits" data-tooltip>21</td>
+                          <td class="source">                if (!this.dodgy(obj[i]) &amp;&amp; this.match(obj[i])) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__56">56</a></td>
                         </tr>            <tr id="dist/gex.js__48" class="hit">
                           <td class="line" data-tooltip>48</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">            }</td>
+                          <td class="hits" data-tooltip>8</td>
+                          <td class="source">                    out.push(obj[i]);</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__57">57</a></td>
                         </tr>            <tr id="dist/gex.js__49" class="hit">
                           <td class="line" data-tooltip>49</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>8</td>
-                          <td class="source">            return out;</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">                }</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__58">58</a></td>
                         </tr>            <tr id="dist/gex.js__50" class="hit">
                           <td class="line" data-tooltip>50</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        }</td>
+                          <td class="source">            }</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__59">59</a></td>
                         </tr>            <tr id="dist/gex.js__51" class="hit">
                           <td class="line" data-tooltip>51</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        else {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__59">59</a></td>
+                          <td class="hits" data-tooltip>8</td>
+                          <td class="source">            return out;</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__60">60</a></td>
                         </tr>            <tr id="dist/gex.js__52" class="hit">
                           <td class="line" data-tooltip>52</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>5</td>
-                          <td class="source">            let outobj &#x3D; {};</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__60">60</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__61">61</a></td>
                         </tr>            <tr id="dist/gex.js__53" class="hit">
                           <td class="line" data-tooltip>53</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>5</td>
-                          <td class="source">            for (let p in obj) {</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        else {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__61">61</a></td>
                         </tr>            <tr id="dist/gex.js__54" class="hit">
                           <td class="line" data-tooltip>54</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>10</td>
-                          <td class="source">                if (Object.prototype.hasOwnProperty.call(obj, p)) {</td>
+                          <td class="hits" data-tooltip>5</td>
+                          <td class="source">            let outobj &#x3D; {};</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__62">62</a></td>
                         </tr>            <tr id="dist/gex.js__55" class="hit">
                           <td class="line" data-tooltip>55</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>9</td>
-                          <td class="source">                    if (this.match(p)) {</td>
+                          <td class="hits" data-tooltip>5</td>
+                          <td class="source">            for (let p in obj) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__63">63</a></td>
                         </tr>            <tr id="dist/gex.js__56" class="hit">
                           <td class="line" data-tooltip>56</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>6</td>
-                          <td class="source">                        outobj[p] &#x3D; obj[p];</td>
+                          <td class="hits" data-tooltip>10</td>
+                          <td class="source">                if (Object.prototype.hasOwnProperty.call(obj, p)) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__64">64</a></td>
                         </tr>            <tr id="dist/gex.js__57" class="hit">
                           <td class="line" data-tooltip>57</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">                    }</td>
+                          <td class="hits" data-tooltip>9</td>
+                          <td class="source">                    if (this.match(p)) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__65">65</a></td>
                         </tr>            <tr id="dist/gex.js__58" class="hit">
                           <td class="line" data-tooltip>58</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">                }</td>
+                          <td class="hits" data-tooltip>6</td>
+                          <td class="source">                        outobj[p] &#x3D; obj[p];</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__66">66</a></td>
                         </tr>            <tr id="dist/gex.js__59" class="hit">
                           <td class="line" data-tooltip>59</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            }</td>
+                          <td class="source">                    }</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__67">67</a></td>
                         </tr>            <tr id="dist/gex.js__60" class="hit">
                           <td class="line" data-tooltip>60</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>5</td>
-                          <td class="source">            return outobj;</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">                }</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__68">68</a></td>
                         </tr>            <tr id="dist/gex.js__61" class="hit">
                           <td class="line" data-tooltip>61</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        }</td>
+                          <td class="source">            }</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__69">69</a></td>
                         </tr>            <tr id="dist/gex.js__62" class="hit">
                           <td class="line" data-tooltip>62</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
+                          <td class="hits" data-tooltip>5</td>
+                          <td class="source">            return outobj;</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__70">70</a></td>
                         </tr>            <tr id="dist/gex.js__63" class="hit">
                           <td class="line" data-tooltip>63</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    esc(gexexp) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__72">72</a></td>
+                          <td class="source">        }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__71">71</a></td>
                         </tr>            <tr id="dist/gex.js__64" class="hit">
                           <td class="line" data-tooltip>64</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        let gexstr &#x3D; this.clean(gexexp);</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__73">73</a></td>
+                          <td class="source">    }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__72">72</a></td>
                         </tr>            <tr id="dist/gex.js__65" class="hit">
                           <td class="line" data-tooltip>65</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>7</td>
-                          <td class="source">        gexstr &#x3D; gexstr.replace(/\*/g, &#x27;**&#x27;);</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    esc(gexexp) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__74">74</a></td>
                         </tr>            <tr id="dist/gex.js__66" class="hit">
                           <td class="line" data-tooltip>66</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>7</td>
-                          <td class="source">        gexstr &#x3D; gexstr.replace(/\?/g, &#x27;*?&#x27;);</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        let gexstr &#x3D; this.clean(gexexp);</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__75">75</a></td>
                         </tr>            <tr id="dist/gex.js__67" class="hit">
                           <td class="line" data-tooltip>67</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>7</td>
-                          <td class="source">        return gexstr;</td>
+                          <td class="source">        gexstr &#x3D; gexstr.replace(/\*/g, &#x27;**&#x27;);</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__76">76</a></td>
                         </tr>            <tr id="dist/gex.js__68" class="hit">
                           <td class="line" data-tooltip>68</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
+                          <td class="hits" data-tooltip>7</td>
+                          <td class="source">        gexstr &#x3D; gexstr.replace(/\?/g, &#x27;*?&#x27;);</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__77">77</a></td>
                         </tr>            <tr id="dist/gex.js__69" class="hit">
                           <td class="line" data-tooltip>69</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    escregexp(restr) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__79">79</a></td>
+                          <td class="hits" data-tooltip>7</td>
+                          <td class="source">        return gexstr;</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__78">78</a></td>
                         </tr>            <tr id="dist/gex.js__70" class="hit">
                           <td class="line" data-tooltip>70</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        return restr ? (&#x27;&#x27; + restr).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, &#x27;\\$&amp;&#x27;) : &#x27;&#x27;;</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__80">80</a></td>
+                          <td class="source">    }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__79">79</a></td>
                         </tr>            <tr id="dist/gex.js__71" class="hit">
                           <td class="line" data-tooltip>71</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
+                          <td class="source">    escregexp(restr) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__81">81</a></td>
                         </tr>            <tr id="dist/gex.js__72" class="hit">
                           <td class="line" data-tooltip>72</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    re(gs) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__83">83</a></td>
+                          <td class="source">        return restr ? (&#x27;&#x27; + restr).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, &#x27;\\$&amp;&#x27;) : &#x27;&#x27;;</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__82">82</a></td>
                         </tr>            <tr id="dist/gex.js__73" class="hit">
                           <td class="line" data-tooltip>73</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        if (&#x27;&#x27; &#x3D;&#x3D;&#x3D; gs || gs) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__84">84</a></td>
+                          <td class="source">    }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__83">83</a></td>
                         </tr>            <tr id="dist/gex.js__74" class="hit">
                           <td class="line" data-tooltip>74</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>36</td>
-                          <td class="source">            gs &#x3D; this.escregexp(gs);</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    re(gs) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__85">85</a></td>
                         </tr>            <tr id="dist/gex.js__75" class="hit">
                           <td class="line" data-tooltip>75</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            // use [\s\S] instead of . to match newlines</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__87">87</a></td>
+                          <td class="source">        if (&#x27;&#x27; &#x3D;&#x3D;&#x3D; gs || gs) {</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__86">86</a></td>
                         </tr>            <tr id="dist/gex.js__76" class="hit">
                           <td class="line" data-tooltip>76</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>36</td>
-                          <td class="source">            gs &#x3D; gs.replace(/\\\*/g, &#x27;[\\s\\S]*&#x27;);</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__88">88</a></td>
+                          <td class="source">            gs &#x3D; this.escregexp(gs);</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__87">87</a></td>
                         </tr>            <tr id="dist/gex.js__77" class="hit">
                           <td class="line" data-tooltip>77</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>36</td>
-                          <td class="source">            gs &#x3D; gs.replace(/\\\?/g, &#x27;[\\s\\S]&#x27;);</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            // use [\s\S] instead of . to match newlines</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__89">89</a></td>
                         </tr>            <tr id="dist/gex.js__78" class="hit">
                           <td class="line" data-tooltip>78</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">            // escapes ** and *?</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__91">91</a></td>
+                          <td class="hits" data-tooltip>36</td>
+                          <td class="source">            gs &#x3D; gs.replace(/\\\*/g, &#x27;[\\s\\S]*&#x27;);</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__90">90</a></td>
                         </tr>            <tr id="dist/gex.js__79" class="hit">
                           <td class="line" data-tooltip>79</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>36</td>
-                          <td class="source">            gs &#x3D; gs.replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g, &#x27;\\*&#x27;);</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__92">92</a></td>
+                          <td class="source">            gs &#x3D; gs.replace(/\\\?/g, &#x27;[\\s\\S]&#x27;);</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__91">91</a></td>
                         </tr>            <tr id="dist/gex.js__80" class="hit">
                           <td class="line" data-tooltip>80</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>36</td>
-                          <td class="source">            gs &#x3D; gs.replace(/\[\\s\\S\]\*\[\\s\\S\]/g, &#x27;\\?&#x27;);</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            // escapes ** and *?</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__93">93</a></td>
                         </tr>            <tr id="dist/gex.js__81" class="hit">
                           <td class="line" data-tooltip>81</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>36</td>
-                          <td class="source">            gs &#x3D; &#x27;^&#x27; + gs + &#x27;$&#x27;;</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__95">95</a></td>
+                          <td class="source">            gs &#x3D; gs.replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g, &#x27;\\*&#x27;);</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__94">94</a></td>
                         </tr>            <tr id="dist/gex.js__82" class="hit">
                           <td class="line" data-tooltip>82</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>36</td>
-                          <td class="source">            return new RegExp(gs);</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__97">97</a></td>
+                          <td class="source">            gs &#x3D; gs.replace(/\[\\s\\S\]\*\[\\s\\S\]/g, &#x27;\\?&#x27;);</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__95">95</a></td>
                         </tr>            <tr id="dist/gex.js__83" class="hit">
                           <td class="line" data-tooltip>83</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        }</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__98">98</a></td>
+                          <td class="hits" data-tooltip>36</td>
+                          <td class="source">            gs &#x3D; &#x27;^&#x27; + gs + &#x27;$&#x27;;</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__97">97</a></td>
                         </tr>            <tr id="dist/gex.js__84" class="hit">
                           <td class="line" data-tooltip>84</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        else {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__98">98</a></td>
+                          <td class="hits" data-tooltip>36</td>
+                          <td class="source">            return new RegExp(gs);</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__99">99</a></td>
                         </tr>            <tr id="dist/gex.js__85" class="hit">
                           <td class="line" data-tooltip>85</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>5</td>
-                          <td class="source">            let gexstrs &#x3D; Object.keys(this.gexmap);</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__99">99</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__100">100</a></td>
                         </tr>            <tr id="dist/gex.js__86" class="hit">
                           <td class="line" data-tooltip>86</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>5</td>
-                          <td class="source">            return 1 &#x3D;&#x3D; gexstrs.length ? this.gexmap[gexstrs[0]] : { ...this.gexmap };</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        else {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__100">100</a></td>
                         </tr>            <tr id="dist/gex.js__87" class="hit">
                           <td class="line" data-tooltip>87</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        }</td>
+                          <td class="hits" data-tooltip>5</td>
+                          <td class="source">            let gexstrs &#x3D; Object.keys(this.gexmap);</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__101">101</a></td>
                         </tr>            <tr id="dist/gex.js__88" class="hit">
                           <td class="line" data-tooltip>88</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
+                          <td class="hits" data-tooltip>5</td>
+                          <td class="source">            return 1 &#x3D;&#x3D; gexstrs.length ? this.gexmap[gexstrs[0]] : { ...this.gexmap };</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__102">102</a></td>
                         </tr>            <tr id="dist/gex.js__89" class="hit">
                           <td class="line" data-tooltip>89</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    toString() {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__104">104</a></td>
+                          <td class="source">        }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__103">103</a></td>
                         </tr>            <tr id="dist/gex.js__90" class="hit">
                           <td class="line" data-tooltip>90</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        let d &#x3D; this.desc;</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__105">105</a></td>
+                          <td class="source">    }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__104">104</a></td>
                         </tr>            <tr id="dist/gex.js__91" class="hit">
                           <td class="line" data-tooltip>91</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>5</td>
-                          <td class="source">        return &#x27;&#x27; !&#x3D; d ? d : (this.desc &#x3D; &#x27;Gex[&#x27; + Object.keys(this.gexmap) + &#x27;]&#x27;);</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    toString() {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__106">106</a></td>
                         </tr>            <tr id="dist/gex.js__92" class="hit">
                           <td class="line" data-tooltip>92</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
+                          <td class="source">        let d &#x3D; this.desc;</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__107">107</a></td>
                         </tr>            <tr id="dist/gex.js__93" class="hit">
                           <td class="line" data-tooltip>93</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    inspect() {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__109">109</a></td>
+                          <td class="hits" data-tooltip>5</td>
+                          <td class="source">        return &#x27;&#x27; !&#x3D; d ? d : (this.desc &#x3D; &#x27;Gex[&#x27; + Object.keys(this.gexmap) + &#x27;]&#x27;);</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__108">108</a></td>
                         </tr>            <tr id="dist/gex.js__94" class="hit">
                           <td class="line" data-tooltip>94</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        return this.toString();</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__110">110</a></td>
+                          <td class="source">    }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__109">109</a></td>
                         </tr>            <tr id="dist/gex.js__95" class="hit">
                           <td class="line" data-tooltip>95</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
+                          <td class="source">    inspect() {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__111">111</a></td>
                         </tr>            <tr id="dist/gex.js__96" class="hit">
                           <td class="line" data-tooltip>96</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">}</td>
+                          <td class="source">        return this.toString();</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__112">112</a></td>
                         </tr>            <tr id="dist/gex.js__97" class="hit">
                           <td class="line" data-tooltip>97</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">function Gex(gexspec) {</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__114">114</a></td>
+                          <td class="source">    }</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__113">113</a></td>
                         </tr>            <tr id="dist/gex.js__98" class="hit">
                           <td class="line" data-tooltip>98</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>31</td>
-                          <td class="source">    return new Gexer(gexspec);</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__115">115</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">}</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__114">114</a></td>
                         </tr>            <tr id="dist/gex.js__99" class="hit">
                           <td class="line" data-tooltip>99</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">}</td>
+                          <td class="source">function Gex(gexspec) {</td>
                           <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__116">116</a></td>
                         </tr>            <tr id="dist/gex.js__100" class="hit">
                           <td class="line" data-tooltip>100</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>1</td>
-                          <td class="source">exports.Gex &#x3D; Gex;</td>
-                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__118">118</a></td>
+                          <td class="hits" data-tooltip>37</td>
+                          <td class="source">    return new Gexer(gexspec);</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__117">117</a></td>
                         </tr>            <tr id="dist/gex.js__101" class="hit">
                           <td class="line" data-tooltip>101</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">}</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__118">118</a></td>
+                        </tr>            <tr id="dist/gex.js__102" class="hit">
+                          <td class="line" data-tooltip>102</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">exports.Gex &#x3D; Gex;</td>
+                          <td class="original-line" data-tooltip="../gex.ts"><a href="#../gex.ts__120">120</a></td>
+                        </tr>            <tr id="dist/gex.js__103" class="hit">
+                          <td class="line" data-tooltip>103</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
                           <td class="source">//# sourceMappingURL&#x3D;gex.js.map</td>
