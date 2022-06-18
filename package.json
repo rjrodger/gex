@@ -1,6 +1,6 @@
 {
   "name": "gex",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "main": "dist/gex.js",
   "browser": "dist/gex.min.js",
   "types": "dist/gex.d.ts",

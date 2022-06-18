@@ -5,10 +5,8 @@
 },{}],2:[function(require,module,exports){
 /* Copyright (c) 2013-2022 Richard Rodger, MIT License */
 
-
 const GexRoot = require('..')
 const { Gex } = require('..')
-
 
 function s(obj) {
   return JSON.stringify(obj)
@@ -58,19 +56,16 @@ describe('Gex', function () {
     expect(a_b.on('abbb')).toEqual('abbb')
   })
 
-  
   test('module-root', () => {
     var ab = GexRoot('ab')
     expect(ab.on('ab')).toEqual('ab')
   })
-
 
   // test('module-default', () => {
   //   var ab = GexDefault('ab')
   //   expect(ab.on('ab')).toEqual('ab')
   // })
 
-  
   test('arrays', () => {
     var a_ = Gex('a*') // maybe: to deep equal
     expect(s(a_.on(['ab', 'ac']))).toEqual(s(['ab', 'ac']))
@@ -79,7 +74,9 @@ describe('Gex', function () {
     expect(s(a_.on(['ff', 'dd', 'ee']))).toEqual(s([]))
     expect(s(a_.on([]))).toEqual(s([]))
     expect(s(a_.on([null]))).toEqual(s([]))
-    expect(s(a_.on(['ab', null, 'dd', undefined, 'ee', NaN]))).toEqual(s(['ab']))
+    expect(s(a_.on(['ab', null, 'dd', undefined, 'ee', NaN]))).toEqual(
+      s(['ab'])
+    )
   })
 
   test('objects', () => {
@@ -191,7 +188,6 @@ describe('Gex', function () {
     expect(g.inspect()).toEqual('Gex[a*,*b]')
   })
 
-
   test('funky', () => {
     expect(Gex('').on('a')).toEqual(null)
     expect(Gex().on('a')).toEqual(null)
@@ -211,25 +207,26 @@ require('./gex.test.js')
 // A quick and dirty abomination to partially run the unit tests inside an
 // actual browser by simulating some of the Jest API.
 
-const Jester = window.Jester = {
+const Jester = (window.Jester = {
   exclude: [],
   state: {
     describe: {},
     unit: {},
     fail: {},
-  }
-}
+  },
+})
 
 // Ensure keys are sorted when JSONified.
 function stringify(o) {
-  if(null === o) return 'null'
-  if('symbol' === typeof o) return String(o)
-  if('object' !== typeof o) return ''+o
+  if (null === o) return 'null'
+  if ('symbol' === typeof o) return String(o)
+  if ('object' !== typeof o) return '' + o
   return JSON.stringify(
     Object.keys(o)
       .sort()
-      .reduce((a,k)=>(a[k]=o[k],a),{}),
-    stringify) // Recusively!
+      .reduce((a, k) => ((a[k] = o[k]), a), {}),
+    stringify
+  ) // Recusively!
 }
 
 function print(s) {
@@ -237,35 +234,34 @@ function print(s) {
   test.innerHTML = test.innerHTML + s + '<br>'
 }
 
-
-window.describe = function(name, tests) {
+window.describe = function (name, tests) {
   Jester.state.describe = { name }
   tests()
 }
-window.test = function(name, unit) {
-  if(Jester.exclude.includes(name)) return;
+window.test = function (name, unit) {
+  if (Jester.exclude.includes(name)) return
 
   try {
     Jester.state.unit = { name }
     unit()
     // console.log('PASS:', name)
-    print('PASS: '+name)
-  }
-  catch(e) {
+    print('PASS: ' + name)
+  } catch (e) {
     console.log(e)
-    print('FAIL: '+name)
-    print(e.message+'<br><pre>'+e.stack+'</pre>')
+    print('FAIL: ' + name)
+    print(e.message + '<br><pre>' + e.stack + '</pre>')
   }
 }
-window.expect = function(sval) {
-
-  function pass(cval,ok) {
+window.expect = function (sval) {
+  function pass(cval, ok) {
     // console.log('pass',cval,ok)
-    if(!ok) {
+    if (!ok) {
       let state = Jester.state
       state.fail.found = sval
       state.fail.expected = cval
-      let err =  new Error('FAIL: '+state.describe.name+' '+state.unit.name)
+      let err = new Error(
+        'FAIL: ' + state.describe.name + ' ' + state.unit.name
+      )
       throw err
     }
   }
@@ -279,29 +275,27 @@ window.expect = function(sval) {
   }
 
   return {
-    toEqual: (cval)=>{
+    toEqual: (cval) => {
       passEqualJSON(cval)
     },
-    toBeTruthy: (cval)=>pass(cval,!!cval),
-    toBeFalsy: (cval)=>pass(cval,!cval),
-    toBeDefined: (cval)=>pass(cval,undefined!==sval),
-    toBeUndefined: (cval)=>pass(cval,undefined===sval),
-    toMatch: (cval)=>pass(cval,sval.match(cval)),
-    toThrow: (cval)=>{
+    toBeTruthy: (cval) => pass(cval, !!cval),
+    toBeFalsy: (cval) => pass(cval, !cval),
+    toBeDefined: (cval) => pass(cval, undefined !== sval),
+    toBeUndefined: (cval) => pass(cval, undefined === sval),
+    toMatch: (cval) => pass(cval, sval.match(cval)),
+    toThrow: (cval) => {
       try {
         sval()
-        pass(cval,false)
-      }
-      catch(e) {
-        pass(cval,true)
+        pass(cval, false)
+      } catch (e) {
+        pass(cval, true)
       }
     },
-    toMatchObject: (cval)=>{
+    toMatchObject: (cval) => {
       passEqualJSON(cval)
     },
   }
 }
-
 
 require('./jester-tests.js')
 

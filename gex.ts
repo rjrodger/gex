@@ -117,7 +117,6 @@ function Gex(gexspec: string | string[]): Gexer {
   return new Gexer(gexspec)
 }
 
-
 if ('undefined' !== typeof module) {
   module.exports = Gex
   module.exports.Gex = Gex
@@ -126,6 +125,3 @@ if ('undefined' !== typeof module) {
 export default Gex
 
 export { Gex }
-
-
-

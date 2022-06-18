@@ -1,9 +1,7 @@
 /* Copyright (c) 2013-2022 Richard Rodger, MIT License */
 
-
 const GexRoot = require('..')
 const { Gex } = require('..')
-
 
 function s(obj) {
   return JSON.stringify(obj)
@@ -53,19 +51,16 @@ describe('Gex', function () {
     expect(a_b.on('abbb')).toEqual('abbb')
   })
 
-  
   test('module-root', () => {
     var ab = GexRoot('ab')
     expect(ab.on('ab')).toEqual('ab')
   })
-
 
   // test('module-default', () => {
   //   var ab = GexDefault('ab')
   //   expect(ab.on('ab')).toEqual('ab')
   // })
 
-  
   test('arrays', () => {
     var a_ = Gex('a*') // maybe: to deep equal
     expect(s(a_.on(['ab', 'ac']))).toEqual(s(['ab', 'ac']))
@@ -74,7 +69,9 @@ describe('Gex', function () {
     expect(s(a_.on(['ff', 'dd', 'ee']))).toEqual(s([]))
     expect(s(a_.on([]))).toEqual(s([]))
     expect(s(a_.on([null]))).toEqual(s([]))
-    expect(s(a_.on(['ab', null, 'dd', undefined, 'ee', NaN]))).toEqual(s(['ab']))
+    expect(s(a_.on(['ab', null, 'dd', undefined, 'ee', NaN]))).toEqual(
+      s(['ab'])
+    )
   })
 
   test('objects', () => {
@@ -185,7 +182,6 @@ describe('Gex', function () {
     g = Gex(['a*', '*b'])
     expect(g.inspect()).toEqual('Gex[a*,*b]')
   })
-
 
   test('funky', () => {
     expect(Gex('').on('a')).toEqual(null)
