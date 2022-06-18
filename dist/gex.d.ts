@@ -15,4 +15,5 @@ declare class Gexer {
     inspect(): string;
 }
 declare function Gex(gexspec: string | string[]): Gexer;
+export default Gex;
 export { Gex };

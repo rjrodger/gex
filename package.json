@@ -6,10 +6,15 @@
   "types": "dist/gex.d.ts",
   "description": "Glob expressions for JavaScript",
   "scripts": {
+    "test": "jest --coverage",
+    "test-pure": "jest --coverage --config jest.config.pure.js",
+    "test-some": "jest -t",
+    "test-some-pure": "jest --config jest.config.pure.js -t",
+    "test-watch": "jest --coverage --watchAll",
+    "test-web": "npm run build-web && browserify -i util -o test/jester-web.js -e test/jester.js -im && open test/jester.html",
     "watch": "tsc -w -d",
-    "build": "tsc -d && cp dist/gex.js dist/gex.min.js && browserify -o dist/gex.min.js -e dist/gex.js -s Gex -im -i assert -p tinyify",
-    "test": "lab -v -L -P test -t 90 --sourcemaps --transform node_modules/lab-transform-typescript -r console -o stdout -r html -o test/coverage.html -r lcov -o test/lcov.info",
-    "test-web": "browserify -o test-web/test-web.js -e test/gex.test.js -s Gex -im -i assert -i @hapi/lab && open test-web/index.html",
+    "build": "tsc -d",
+    "build-web": "npm run build && cp dist/gex.js dist/gex.min.js && browserify -i util -o dist/gex.min.js -e dist/gex.js -s Gex -im -p tinyify",
     "prettier": "prettier --write --no-semi --single-quote gex.ts test/*.js",
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test",
@@ -40,15 +45,15 @@
     "dist"
   ],
   "devDependencies": {
-    "@hapi/code": "^8.0.3",
-    "@hapi/lab": "^24.1.1",
+    "@types/jest": "^28.1.2",
+    "@types/node": "^18.0.0",
     "browserify": "^17.0.0",
-    "@types/node": "^14.14.41",
-    "prettier": "^2.2.1",
+    "esbuild": "^0.14.45",
+    "esbuild-jest": "^0.5.0",
+    "jest": "^28.1.1",
+    "prettier": "^2.7.1",
     "tinyify": "^3.0.0",
-    "typescript": "^4.2.4",
-    "hapi-lab-shim": "0.0.2",
-    "jsonic": "^1.0.1",
-    "lab-transform-typescript": "^3.0.1"
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4"
   }
 }

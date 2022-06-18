@@ -100,4 +100,9 @@ function Gex(gexspec) {
     return new Gexer(gexspec);
 }
 exports.Gex = Gex;
+if ('undefined' !== typeof module) {
+    module.exports = Gex;
+    module.exports.Gex = Gex;
+}
+exports.default = Gex;
 //# sourceMappingURL=gex.js.map

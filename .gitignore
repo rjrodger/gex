@@ -9,3 +9,7 @@ README.html
 *-off
 .DS_Store
 npm-debug.log
+coverage
+
+package-lock.json
+yarn.lock

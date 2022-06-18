@@ -1,3 +1,8 @@
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function (global){(function (){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).Gex=e()}}((function(){var e={exports:{}};Object.defineProperty(e.exports,"__esModule",{value:!0}),e.exports.Gex=void 0;class t{constructor(e){this.desc="",this.gexmap={},null!=e&&(Array.isArray(e)?e:[e]).forEach(e=>{this.gexmap[e]=this.re(this.clean(e))})}dodgy(e){return null==e||Number.isNaN(e)}clean(e){let t=""+e;return this.dodgy(e)?"":t}match(e){e=""+e;let t=!1,r=Object.keys(this.gexmap);for(let s=0;s<r.length&&!t;s++)t=!!this.gexmap[r[s]].exec(e);return t}on(e){if(null==e)return null;let t=typeof e;if("string"===t||"number"===t||"boolean"===t||e instanceof Date||e instanceof RegExp)return this.match(e)?e:null;if(Array.isArray(e)){let t=[];for(let r=0;r<e.length;r++)!this.dodgy(e[r])&&this.match(e[r])&&t.push(e[r]);return t}{let t={};for(let r in e)Object.prototype.hasOwnProperty.call(e,r)&&this.match(r)&&(t[r]=e[r]);return t}}esc(e){let t=this.clean(e);return(t=t.replace(/\*/g,"**")).replace(/\?/g,"*?")}escregexp(e){return e?(""+e).replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&"):""}re(e){if(""===e||e)return e="^"+(e=(e=(e=(e=(e=this.escregexp(e)).replace(/\\\*/g,"[\\s\\S]*")).replace(/\\\?/g,"[\\s\\S]")).replace(/\[\\s\\S\]\*\[\\s\\S\]\*/g,"\\*")).replace(/\[\\s\\S\]\*\[\\s\\S\]/g,"\\?"))+"$",new RegExp(e);{let e=Object.keys(this.gexmap);return 1==e.length?this.gexmap[e[0]]:{...this.gexmap}}}toString(){let e=this.desc;return""!=e?e:this.desc="Gex["+Object.keys(this.gexmap)+"]"}inspect(){return this.toString()}}function r(e){return new t(e)}return e.exports.Gex=r,e.exports=r,e.exports.Gex=r,e.exports.default=r,e=e.exports}));
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],2:[function(require,module,exports){
 /* Copyright (c) 2013-2022 Richard Rodger, MIT License */
 
 
@@ -196,3 +201,108 @@ describe('Gex', function () {
     expect(Gex(/a/).on('a')).toEqual(null)
   })
 })
+
+},{"..":1}],3:[function(require,module,exports){
+require('./gex.test.js')
+
+},{"./gex.test.js":2}],4:[function(require,module,exports){
+// Run: npm run test-web
+
+// A quick and dirty abomination to partially run the unit tests inside an
+// actual browser by simulating some of the Jest API.
+
+const Jester = window.Jester = {
+  exclude: [],
+  state: {
+    describe: {},
+    unit: {},
+    fail: {},
+  }
+}
+
+// Ensure keys are sorted when JSONified.
+function stringify(o) {
+  if(null === o) return 'null'
+  if('symbol' === typeof o) return String(o)
+  if('object' !== typeof o) return ''+o
+  return JSON.stringify(
+    Object.keys(o)
+      .sort()
+      .reduce((a,k)=>(a[k]=o[k],a),{}),
+    stringify) // Recusively!
+}
+
+function print(s) {
+  let test = document.getElementById('test')
+  test.innerHTML = test.innerHTML + s + '<br>'
+}
+
+
+window.describe = function(name, tests) {
+  Jester.state.describe = { name }
+  tests()
+}
+window.test = function(name, unit) {
+  if(Jester.exclude.includes(name)) return;
+
+  try {
+    Jester.state.unit = { name }
+    unit()
+    // console.log('PASS:', name)
+    print('PASS: '+name)
+  }
+  catch(e) {
+    console.log(e)
+    print('FAIL: '+name)
+    print(e.message+'<br><pre>'+e.stack+'</pre>')
+  }
+}
+window.expect = function(sval) {
+
+  function pass(cval,ok) {
+    // console.log('pass',cval,ok)
+    if(!ok) {
+      let state = Jester.state
+      state.fail.found = sval
+      state.fail.expected = cval
+      let err =  new Error('FAIL: '+state.describe.name+' '+state.unit.name)
+      throw err
+    }
+  }
+
+  function passEqualJSON(cval) {
+    let sjson = stringify(sval)
+    let cjson = stringify(cval)
+
+    let ok = sjson === cjson
+    pass(cval, ok)
+  }
+
+  return {
+    toEqual: (cval)=>{
+      passEqualJSON(cval)
+    },
+    toBeTruthy: (cval)=>pass(cval,!!cval),
+    toBeFalsy: (cval)=>pass(cval,!cval),
+    toBeDefined: (cval)=>pass(cval,undefined!==sval),
+    toBeUndefined: (cval)=>pass(cval,undefined===sval),
+    toMatch: (cval)=>pass(cval,sval.match(cval)),
+    toThrow: (cval)=>{
+      try {
+        sval()
+        pass(cval,false)
+      }
+      catch(e) {
+        pass(cval,true)
+      }
+    },
+    toMatchObject: (cval)=>{
+      passEqualJSON(cval)
+    },
+  }
+}
+
+
+require('./jester-tests.js')
+
+},{"./jester-tests.js":3}]},{},[4]);
