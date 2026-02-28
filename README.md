@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/rjrodger/gex.png)](http://travis-ci.org/rjrodger/gex)
 # gex
 
 [![npm version](https://badge.fury.io/js/gex.svg)](https://badge.fury.io/js/gex)
