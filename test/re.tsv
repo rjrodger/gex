@@ -1,0 +1,31 @@
+# pattern	expected_regex
+# Simple patterns
+ab	/^ab$/
+a	/^a$/
+# Star wildcard
+a*b	/^a[\s\S]*b$/
+*	/^[\s\S]*$/
+a*	/^a[\s\S]*$/
+*b	/^[\s\S]*b$/
+a*b*c	/^a[\s\S]*b[\s\S]*c$/
+# Question mark wildcard
+a?b	/^a[\s\S]b$/
+?	/^[\s\S]$/
+a?	/^a[\s\S]$/
+?b	/^[\s\S]b$/
+a?b?c	/^a[\s\S]b[\s\S]c$/
+# Escaped star (literal *)
+a**b	/^a\*b$/
+# Escaped question (literal ?)
+a*?b	/^a\?b$/
+# Special regex chars get escaped
+a.b	/^a\.b$/
+a+b	/^a\+b$/
+a(b	/^a\(b$/
+a[b	/^a\[b$/
+a{b	/^a\{b$/
+a^b	/^a\^b$/
+a$b	/^a\$b$/
+a|b	/^a\|b$/
+# Empty pattern
+	/^$/
