@@ -2,21 +2,18 @@
   "name": "gex",
   "version": "4.0.1",
   "main": "dist/gex.js",
-  "browser": "dist/gex.min.js",
   "types": "dist/gex.d.ts",
   "description": "Glob expressions for JavaScript",
   "scripts": {
     "test": "node --test 'test/**/*.test.js'",
-    "test-web": "npm run build-web && browserify -i util -o test/jester-web.js -e test/jester.js -im && open test/jester.html",
     "watch": "tsc -w -d",
     "build": "tsc -d",
-    "build-web": "npm run build && cp dist/gex.js dist/gex.min.js && browserify -i util -o dist/gex.min.js -e dist/gex.js -s Gex -im -p tinyify",
     "prettier": "prettier --write --no-semi --single-quote src/gex.ts test/*.js",
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test",
     "repo-tag": "REPO_VERSION=`node -e \"console.log(require('./package').version)\"`; echo TAG: v$REPO_VERSION && git commit -a -m v$REPO_VERSION && git push && git tag v$REPO_VERSION && git push --tags;",
     "repo-publish": "npm run clean && npm i && npm run repo-publish-quick",
-    "repo-publish-quick": "npm run prettier && npm run build && npm run test && npm run test-web && npm run repo-tag && npm publish --registry https://registry.npmjs.org "
+    "repo-publish-quick": "npm run prettier && npm run build && npm run test && npm run repo-tag && npm publish --registry https://registry.npmjs.org "
   },
   "keywords": [
     "glob",
@@ -42,10 +39,7 @@
   ],
   "devDependencies": {
     "@types/node": "^22.0.0",
-    "browserify": "^17.0.0",
-    "esbuild": "^0.14.45",
     "prettier": "^2.7.1",
-    "tinyify": "^3.0.0",
     "typescript": "^5.7.0"
   }
 }
