@@ -1,7 +1,7 @@
 "use strict";
 /* Copyright (c) 2011-2020 Richard Rodger, MIT License */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Gex = void 0;
+exports.Gex = Gex;
 class Gexer {
     constructor(gexspec) {
         this.desc = '';
@@ -99,7 +99,6 @@ class Gexer {
 function Gex(gexspec) {
     return new Gexer(gexspec);
 }
-exports.Gex = Gex;
 if ('undefined' !== typeof module) {
     module.exports = Gex;
     module.exports.Gex = Gex;

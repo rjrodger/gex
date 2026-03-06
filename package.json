@@ -6,16 +6,12 @@
   "types": "dist/gex.d.ts",
   "description": "Glob expressions for JavaScript",
   "scripts": {
-    "test": "jest --coverage",
-    "test-pure": "jest --coverage --config jest.config.pure.js",
-    "test-some": "jest -t",
-    "test-some-pure": "jest --config jest.config.pure.js -t",
-    "test-watch": "jest --coverage --watchAll",
+    "test": "node --test 'test/**/*.test.js'",
     "test-web": "npm run build-web && browserify -i util -o test/jester-web.js -e test/jester.js -im && open test/jester.html",
     "watch": "tsc -w -d",
     "build": "tsc -d",
     "build-web": "npm run build && cp dist/gex.js dist/gex.min.js && browserify -i util -o dist/gex.min.js -e dist/gex.js -s Gex -im -p tinyify",
-    "prettier": "prettier --write --no-semi --single-quote gex.ts test/*.js",
+    "prettier": "prettier --write --no-semi --single-quote src/gex.ts test/*.js",
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test",
     "repo-tag": "REPO_VERSION=`node -e \"console.log(require('./package').version)\"`; echo TAG: v$REPO_VERSION && git commit -a -m v$REPO_VERSION && git push && git tag v$REPO_VERSION && git push --tags;",
@@ -41,19 +37,15 @@
   "files": [
     "README.md",
     "LICENSE.txt",
-    "gex.ts",
+    "src",
     "dist"
   ],
   "devDependencies": {
-    "@types/jest": "^28.1.2",
-    "@types/node": "^18.0.0",
+    "@types/node": "^22.0.0",
     "browserify": "^17.0.0",
     "esbuild": "^0.14.45",
-    "esbuild-jest": "^0.5.0",
-    "jest": "^28.1.1",
     "prettier": "^2.7.1",
     "tinyify": "^3.0.0",
-    "ts-jest": "^28.0.5",
-    "typescript": "^4.7.4"
+    "typescript": "^5.7.0"
   }
 }
