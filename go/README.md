@@ -6,7 +6,7 @@ Glob expressions for Go: `*` matches any run of characters, `?` matches
 one character, `**` and `*?` escape literal `*` and `?`. Patterns are
 anchored — they must match the whole string.
 
-**Version:** `0.1.0`).
+**Version:** `0.1.1`).
 
 This is the Go port of the [JavaScript / TypeScript `gex`
 package](../README.md). Matching semantics are identical; the API

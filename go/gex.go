@@ -15,7 +15,7 @@ import (
 )
 
 // Version is the current version of the gex Go module.
-const Version = "0.1.0"
+const Version = "0.1.1"
 
 var escRE = regexp.MustCompile(`[-\[\]{}()*+?.,\\^$|#\s]`)
 
