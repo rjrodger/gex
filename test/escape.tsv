@@ -1,0 +1,29 @@
+# input	expected
+# Empty
+
+# Stars
+*	**
+**	****
+a*	a**
+*a	**a
+a*b	a**b
+a*b*c	a**b**c
+# Question marks
+?	*?
+??	*?*?
+a?	a*?
+?a	*?a
+a?b	a*?b
+a?b?c	a*?b*?c
+# Mixed
+*?	***?
+?*	*?**
+a*b?c	a**b*?c
+# No special chars (unchanged)
+abc	abc
+hello	hello
+123	123
+# Special regex chars (unchanged, esc only handles * and ?)
+a.b	a.b
+a+b	a+b
+a(b	a(b
