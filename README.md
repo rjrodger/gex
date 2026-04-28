@@ -3,93 +3,195 @@
 [![npm version](https://badge.fury.io/js/gex.svg)](https://badge.fury.io/js/gex)
 [![Build](https://github.com/rjrodger/gex/workflows/build/badge.svg)](https://github.com/rjrodger/gex/actions?query=workflow%3Abuild)
 [![Coverage Status](https://coveralls.io/repos/github/rjrodger/gex/badge.svg?branch=main)](https://coveralls.io/github/rjrodger/gex?branch=main)
-[![DeepScan grade](https://deepscan.io/api/teams/5016/projects/13588/branches/232094/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5016&pid=13588&bid=232094)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5def990719578771abb3/maintainability)](https://codeclimate.com/github/rjrodger/gex/maintainability)
-[![Dependency Status](https://david-dm.org/rjrodger/gex.svg)](https://david-dm.org/rjrodger/gex)
 
+> *"When regular expressions are just too hard!"*
 
+Glob expressions for JavaScript / TypeScript. `*` matches any run of
+characters, `?` matches one character, `**` and `*?` escape literal
+`*` and `?`. Patterns are anchored — they must match the whole string.
 
-## Glob expressions for JavaScript
+This README covers the JavaScript / TypeScript package. A Go port lives
+in [`go/`](./go) — see [`go/README.md`](./go/README.md) for installation
+and API. Matching semantics are the same in both ports.
 
-*"When regular expressions are just too hard!"*
+---
 
-Match glob expressions using * and ? against any JavaScript data type. 
-The character * means match anything of any length, the character ? means match exactly one of any character, 
-and all other characters match themselves.
+## Tutorial: your first gex
 
-    const { Gex } = require('gex')
+Install:
 
-    Gex('a*').on( 'abc' ) // returns 'abc'
-    Gex('a*c').on( 'abbbc' ) // returns 'abbbc'
-    Gex('a?c').on( 'abc' ) // returns 'abc'
+```sh
+npm install gex
+```
 
-You can also match against objects and arrays:
+Build a matcher and try it:
 
-    Gex('a*').on( ['ab','zz','ac'] ) // returns ['ab','ac']
-    Gex('a*').on( {ab:1,zz:2,ac:3} ) // returns {ab:1,ac:3}
+```js
+const { Gex } = require('gex')
 
-And also match against multiple globs:
+Gex('a*c').on('abbbc')   // 'abbbc' — match, returns the input
+Gex('a?c').on('abc')     // 'abc'   — match
+Gex('a*c').on('xyz')     //  null   — no match
+```
 
-    Gex(['a*','b*']).on( 'bx' ) // returns 'bx'
-    Gex(['a*','b*']).on( ['ax','zz','bx'] ) // returns ['ax','bx']
+`on()` returns the input when it matches, or `null` when it doesn't.
+Two convenient extensions cover collections:
 
+```js
+Gex('a*').on(['ab', 'zz', 'ac'])      // ['ab', 'ac']
+Gex('a*').on({ ab: 1, zz: 2, ac: 3 }) // { ab: 1, ac: 3 }
+```
 
-One of the most useful things you can do with this library is quick
-assertions in unit tests. For example if your objects contain dates,
-randomly generated unique identifiers, or other data irrelevant for
-testing, `Gex` can help you ignore them when you use `JSON.stringify`:
+A Gex can hold several specs; a value matches if any spec matches:
 
-    var entity = {created: new Date().getTime(), name:'foo' }
-    assert.ok( Gex('{"created":*,"name":"foo"}').on( JSON.stringify(entity) ) )
+```js
+Gex(['a*', 'b*']).on('bx')                // 'bx'
+Gex(['a*', 'b*']).on(['ax', 'zz', 'bx'])  // ['ax', 'bx']
+```
 
-If you need to use globbing on files, here's how apply a glob to a list of files in a folder:
+That's the whole library.
 
-    var fs = require('fs')
-    fs.readdir('.',function(err,files){ 
-      var pngs = Gex('*.png').on(files) 
-    })
+---
 
-And that's it!
+## How-to guides
 
+### Filter a list of files
 
-## Installation
+```js
+const fs = require('fs')
+fs.readdir('.', (err, files) => {
+  const pngs = Gex('*.png').on(files)
+})
+```
 
-    npm install gex
+### Filter an object's keys
 
-And in your code:
+```js
+Gex('foo*').on({ foo: 1, doo: 2, food: 3 })
+// { foo: 1, food: 3 }
+```
 
-    const { Gex } = require('gex')
+Property values are copied by reference. The traversal does not recurse
+into nested objects or arrays.
 
-Or clone the git repository:
-    git clone git://github.com/rjrodger/gex.git
+### Make a fuzzy assertion in a test
 
+When a value has fields that are noisy in tests (timestamps, random
+ids), pattern-match the JSON form:
 
-This library depends on the excellent underscore module: [underscore](https://github.com/documentcloud/underscore)
+```js
+const entity = { created: Date.now(), name: 'foo' }
+assert.ok(Gex('{"created":*,"name":"foo"}').on(JSON.stringify(entity)))
+```
 
+### Combine several patterns
 
-## Usage
+```js
+Gex(['*.png', '*.jpg']).on(files)
+```
 
-The `Gex` object is a function that takes a single argument, the glob
-expression.  This returns a `Gex` object that has only one function
-itself: `on`. The `on` function accepts any JavaScript data type, and operates as follows:
+A value matches if any of the supplied specs match. Specs are tried in
+array order; the first match wins.
 
-   * strings, numbers, booleans, dates, regexes: converted to string form for matching, returned as themselves
-   * arrays: return a new array with all the elements that matched. Elements are not modified, but are converted to strings for matching. Does not recurse into elements.
-   * objects: return a new object with with all the property *names* that matched. Values are copied by reference. 
-   * null, NAN, undefined: never match anything
+### Escape literal `*` or `?`
 
-## Support
+```js
+Gex('a**b').on('a*b')   // 'a*b' — '**' is a literal '*'
+Gex('a*?b').on('a?b')   // 'a?b' — '*?' is a literal '?'
+```
 
-If you're using this library, feel free to contact me on twitter if you have any questions! :) [@rjrodger](http://twitter.com/rjrodger)
+`g.esc(s)` doubles `*` to `**` and `?` to `*?` for you, so user-supplied
+text can be embedded safely:
 
-This module works on both Node.js and browsers.
+```js
+Gex('').esc('a*b?c')   // 'a**b*?c'
+```
 
+### Inspect the compiled regex
 
+```js
+Gex('a*b').re()           // /^a[\s\S]*b$/
+Gex(['a', 'b']).re()      // { a: /^a$/, b: /^b$/ }
+Gex('a*').toString()      // 'Gex[a*]'
+```
+
+---
+
+## Reference
+
+### `Gex(spec)`
+
+Construct a Gex. `spec` is one of:
+
+| Type                                       | Treated as                                |
+| ------------------------------------------ | ----------------------------------------- |
+| `string`                                   | one glob spec                             |
+| `string[]`                                 | several glob specs (any-of)               |
+| `number` / `boolean` / `Date` / `RegExp`   | stringified, then one spec                |
+| `null` / `undefined` / `NaN`               | a Gex that never matches                  |
+
+### `.on(value)`
+
+| Input                                                 | Returns                                              |
+| ----------------------------------------------------- | ---------------------------------------------------- |
+| `string` / `number` / `boolean` / `Date` / `RegExp`   | the input if its string form matches, else `null`    |
+| array                                                 | new array of matching elements (not recursive)       |
+| object                                                | new object with entries whose **keys** match         |
+| `null` / `undefined` / `NaN`                          | `null`                                               |
+
+### `.match(value)`
+
+The boolean form of `.on()` for scalars: `true` if the value's string
+form matches any spec, otherwise `false`.
+
+### `.esc(s)`
+
+Escape `*` and `?` so the result, used as a spec, matches the input
+literally.
+
+### `.re()`
+
+Returns the compiled `RegExp` if the Gex has a single spec, or the
+`{ spec: RegExp }` map otherwise.
+
+### `.toString()` / `.inspect()`
+
+Render as `Gex[spec1,spec2,...]`.
+
+---
+
+## Explanation
+
+**Why a separate library when JS has regex?** Glob syntax is shorter,
+easier to read at a glance, and easier to assemble from user-supplied
+input than a regex. `gex` is a thin compiler from glob to anchored
+regex plus a small filtering API for arrays and objects.
+
+**How the regex is built.** Specs are anchored (`^...$`); `*` becomes
+`[\s\S]*` and `?` becomes `[\s\S]`, so patterns cross newlines. `**`
+and `*?` round-trip back to literal `\*` and `\?` after escaping, so
+escaping composes correctly.
+
+**What `.on()` is for.** It collapses three common shapes into one
+call: "is this string a match?", "which of these strings match?", and
+"which of these keys match?". The same Gex object handles all three.
+
+**Use cases the API is shaped around.**
+
+- Plugin name matching (`Gex('seneca-*')` to recognise plugin packages).
+- Filtering filenames returned by `fs.readdir`.
+- Test assertions on JSON snapshots where timestamps or UUIDs are
+  irrelevant — pattern-match those fields with `*`.
+
+**Other languages.** The Go port in [`go/`](./go) shares the same
+matching semantics. The Go API differs where Go's type system makes a
+different shape natural — see [`go/README.md`](./go/README.md) for the
+details.
+
+---
 
 ## License
-Copyright (c) 2010-2020, Richard Rodger and other contributors.
-Licensed under [MIT][].
 
-[MIT]: ./LICENSE
-
-
+Copyright (c) 2010-2026, Richard Rodger and other contributors.
+Licensed under [MIT](./LICENSE.txt).
